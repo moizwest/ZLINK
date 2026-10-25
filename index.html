@@ -169,7 +169,7 @@ section.sec{padding-block:100px}
 .svc-tabs button[aria-selected="true"] span{color:var(--amber)}
 .svc-tabs button:focus-visible{outline:3px solid var(--orange)}
 .svc-panel{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);view-transition-name:svc-panel}
-.svc-media{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;background:#fff}.svc-media img{width:100%;aspect-ratio:16/8;object-fit:cover;min-width:0}.svc-media:has(#svc-img2:not([hidden])) img{aspect-ratio:4/3}
+.svc-media{display:grid;gap:3px;background:#fff;grid-template-columns:1fr}.svc-media img{width:100%;aspect-ratio:16/8;object-fit:cover;min-width:0}.svc-media.n2{grid-template-columns:1fr 1fr}.svc-media.n2 img{aspect-ratio:4/3}.svc-media.n4{grid-template-columns:1fr 1fr}.svc-media.n4 img{aspect-ratio:16/10}
 .svc-panel .b{padding:30px 32px 34px;display:grid;gap:14px}
 .svc-panel p{color:var(--muted);font-size:1.05rem}
 .svc-panel ul{list-style:none;padding:0;margin:4px 0 0;display:flex;flex-wrap:wrap;gap:8px}
@@ -382,9 +382,9 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 <main id="main">
 <section class="hero" id="top">
   <div class="slides" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1739900345763-391d9b62c938?auto=format&fit=crop&w=2000&q=70" alt="" fetchpriority="high">
-    <img src="https://images.unsplash.com/photo-1762356731874-b4042915d34c?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy">
-    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1629957654589-ad5aea15152c?auto=format&fit=crop&w=2000&q=70" alt="" fetchpriority="high">
+    <img src="https://images.unsplash.com/photo-1739900345763-391d9b62c938?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1762536859942-8076505f7c62?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy">
   </div>
   <div class="wrap">
     <div>
@@ -398,7 +398,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
       <div class="chips"><span>Waterproofing</span><span>Epoxy flooring</span><span>Coatings</span><span>Civil</span><span>Painting</span><span>Fire systems</span><span>Landscaping</span><span>Fit-out</span></div>
     </div>
     <figure class="hero-card" style="margin:0">
-      <img src="https://images.unsplash.com/photo-1577199001468-44c049e7603f?auto=format&fit=crop&w=900&q=70" alt="Z-Link style site crew in hi-vis vests and helmets">
+      <img src="https://images.unsplash.com/photo-1646227655685-a530813759b3?auto=format&fit=crop&w=900&q=70" alt="Site engineer in a white hard hat">
       <div class="row"><strong style="color:var(--amber)">8</strong><span>trades delivered by our own crews, not subcontractors</span></div>
     </figure>
   </div>
@@ -435,7 +435,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   <div class="svc">
     <div class="svc-tabs" role="tablist" aria-label="Services"></div>
     <article class="svc-panel" id="svc-panel" role="tabpanel" aria-live="polite">
-      <div class="svc-media"><img id="svc-img" src="https://images.unsplash.com/photo-1674485169641-bcb2bf6f1df9?auto=format&fit=crop&w=1400&q=70" alt=""><img id="svc-img2" alt="" hidden></div>
+      <div class="svc-media" id="svc-media"></div>
       <div class="b"><h3 id="svc-title" style="font-size:2rem">Waterproofing</h3><p id="svc-text"></p><ul id="svc-list"></ul><span class="sys" id="svc-sys"></span>
         <div><button class="btn" type="button" data-quote>Get a quote for this service</button></div></div>
     </article>
@@ -468,10 +468,10 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 <section class="sec" id="people"><div class="wrap">
   <div class="sec-head"><div><span class="kicker">Our team</span><h2>The people behind every job.</h2></div><p>From the first meeting to final handover, you work with the same Z-Link team.</p></div>
   <div class="people">
-    <article class="person reveal"><img src="https://images.unsplash.com/photo-1681505526188-b05e68c77582?auto=format&fit=crop&w=700&q=70" alt="Contract signing with a client" loading="lazy"><div><h3>Management</h3><p>Commercial, estimating and project control.</p></div></article>
-    <article class="person reveal"><img src="https://images.unsplash.com/photo-1697305592218-d5d0c1bab2e3?auto=format&fit=crop&w=700&q=70" alt="Site engineer in hard hat with tablet" loading="lazy"><div><h3>Engineers</h3><p>Survey, system selection and method statements.</p></div></article>
-    <article class="person reveal"><img src="https://images.unsplash.com/photo-1622612023350-b15f063eabe6?auto=format&fit=crop&w=700&q=70" alt="Safety officer in vest and helmet" loading="lazy"><div><h3>Safety &amp; QC</h3><p>Inspections, permits and quality checks.</p></div></article>
-    <article class="person reveal"><img src="https://images.unsplash.com/photo-1759922378222-47ad736a174d?auto=format&fit=crop&w=700&q=70" alt="Site crew in hard hats and vests" loading="lazy"><div><h3>Site crews</h3><p>Trained applicators, masons and fitters.</p></div></article>
+    <article class="person reveal"><img src="https://images.unsplash.com/photo-1758518731468-98e90ffd7430?auto=format&fit=crop&w=700&q=70" alt="Contract signing with a client" loading="lazy"><div><h3>Management</h3><p>Commercial, estimating and project control.</p></div></article>
+    <article class="person reveal"><img src="https://images.unsplash.com/photo-1774600166834-175d06febcd4?auto=format&fit=crop&w=700&q=70" alt="Engineers in hard hats reviewing drawings" loading="lazy"><div><h3>Engineers</h3><p>Survey, system selection and method statements.</p></div></article>
+    <article class="person reveal"><img src="https://images.unsplash.com/photo-1569496736555-47c448d556f7?auto=format&fit=crop&w=700&q=70" alt="Safety officers in hi-vis vests" loading="lazy"><div><h3>Safety &amp; QC</h3><p>Inspections, permits and quality checks.</p></div></article>
+    <article class="person reveal"><img src="https://images.unsplash.com/photo-1694521787193-9293daeddbaa?auto=format&fit=crop&w=700&q=70" alt="Site crew inspecting blockwork" loading="lazy"><div><h3>Site crews</h3><p>Trained applicators, masons and fitters.</p></div></article>
   </div>
 </div></section>
 
@@ -597,11 +597,11 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   var services=[
     {t:'Waterproofing',img:'photo-1674485169641-bcb2bf6f1df9',p:'Roofs, basements, wet areas, tanks and podiums, plus leak investigation and repair on live buildings.',l:['Roof membranes','Basement tanking','Wet areas','Water tanks','Leak repair'],s:'PU · bituminous · cementitious systems'},
     {t:'Epoxy Flooring',img:'photo-1772305336606-989a457ffbae',p:'Hard-wearing floors for car parks, warehouses, factories and food areas, with self-levelling and anti-slip finishes.',l:['Car parks','Warehouses','Factories','Anti-slip','Coving'],s:'Sikafloor · Fosroc · National Paints'},
-    {t:'Industrial Coatings',img:'photo-1666009387246-65e8ad8e7103',p:'Protective coatings for steel structures, tanks and plant, with surface preparation to the specified DFT.',l:['Steel structures','Tanks','Plant rooms','GRP lining'],s:'Jotun Penguard · Hardtop XP · GRP'},
-    {t:'Civil Works',img:'photo-1574757987642-5755f0839101',p:'Concrete repair, crack injection, blockwork, drainage and demolition, done neatly around occupied spaces.',l:['Concrete repair','Crack injection','Blockwork','Drainage','Demolition'],s:'Repair mortars · injection resins'},
-    {t:'Painting',img:'photo-1613844044163-1ad2f2d0b152',img2:'photo-1598928506311-c55ded91a20c',p:'Professional interior and exterior painting for villas, towers, offices and restaurants: surface preparation, primers and finish coats, with dual-tone facades and premium interior finishes.',l:['Villa exteriors','Tower facades','Premium interiors','Texture finishes','Car park marking'],s:'Dual-tone facades · texture finishes'},
-    {t:'Fire Systems',img:'photo-1785682117611-586d39bfd5f2',p:'Fire pump suction lines, fire mains, fire door overhaul and fire-rated coatings for compliance.',l:['Fire mains','Pump suction lines','Fire doors','Intumescent'],s:'HDPE · GI · intumescent'},
-    {t:'Landscaping',img:'photo-1552589252-70f32f048b36',p:'Soft and hard landscaping for villas, communities and campuses: palms and lawns, interlock paving, sports grounds and water features.',l:['Palms & lawns','Interlock paving','Sports grounds','Water features','Hardscape'],s:'Interlock · granite · edging'},
+    {t:'Industrial Coatings',img:'photo-1734475318787-b2b737296469',gal:['photo-1623626492818-5bf3e893649f'],p:'Protective coatings for steel structures, tanks and plant, with surface preparation to the specified DFT.',l:['Steel structures','Tanks','Plant rooms','GRP lining'],s:'Jotun Penguard · Hardtop XP · GRP'},
+    {t:'Civil Works',img:'photo-1685464196387-854858ce0f4f',p:'Concrete repair, crack injection, blockwork, drainage and demolition, done neatly around occupied spaces.',l:['Concrete repair','Crack injection','Blockwork','Drainage','Demolition'],s:'Repair mortars · injection resins'},
+    {t:'Painting',img:'photo-1769013649052-add139112bc9',gal:['photo-1655665151765-98a95126ba41','photo-1631585769904-c2bafd4fd63a','photo-1758448755778-90ebf4d0f1e7'],p:'Interior and exterior painting for villas, apartments, towers, offices and restaurants: bold colours, accent and feature walls, texture and decorative finishes such as Venetian-style plaster, plus dual-tone facades.',l:['Feature walls','Texture paint','Decorative finishes','Villa exteriors','Tower facades'],s:'Dual-tone facades · texture finishes'},
+    {t:'Fire Systems',img:'photo-1785682118449-21da8825754d',gal:['photo-1612120729769-bd0d8a171ae4'],p:'Fire pump suction lines, fire mains, fire door overhaul and fire-rated coatings for compliance.',l:['Fire mains','Pump suction lines','Fire doors','Intumescent'],s:'HDPE · GI · intumescent'},
+    {t:'Landscaping',img:'photo-1734079692160-fcbe4be6ab96',gal:['photo-1597201278257-3687be27d954'],p:'Soft and hard landscaping for villas, communities and campuses: palms and lawns, interlock paving, sports grounds and water features.',l:['Palms & lawns','Interlock paving','Sports grounds','Water features','Hardscape'],s:'Interlock · granite · edging'},
     {t:'Turnkey Fit-out',img:'photo-1577412647305-991150c7d163',p:'Offices, washrooms, warehouses and post-fire reinstatement, coordinated and handed over ready to use.',l:['Offices','Washrooms','Warehouses','Post-fire reinstatement'],s:'Gypsum · joinery · MEP coordination'}
   ];
   var tabs=document.querySelector('.svc-tabs');
@@ -619,7 +619,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   var current=0;
   function render(i){
     var s=services[i];
-    document.getElementById('svc-img').src=U+s.img+Q;document.getElementById('svc-img').alt=s.t;var i2=document.getElementById('svc-img2');if(s.img2){i2.src=U+s.img2+Q;i2.alt=s.t+' interior';i2.hidden=false}else{i2.hidden=true}
+    var all=[s.img].concat(s.gal||[]),m=document.getElementById('svc-media');m.className='svc-media n'+all.length;m.innerHTML=all.map(function(x,k){return '<img src="'+U+x+(all.length>1?'?auto=format&fit=crop&w=800&q=70':Q)+'" alt="'+s.t+(k?' example '+(k+1):'')+'">'}).join('');
     document.getElementById('svc-title').textContent=s.t;
     document.getElementById('svc-text').textContent=s.p;
     document.getElementById('svc-list').innerHTML=s.l.map(function(x){return '<li>'+x+'</li>'}).join('');
