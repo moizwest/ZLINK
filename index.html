@@ -324,21 +324,19 @@ dialog.cert img{width:100%;border-radius:4px}
 
 /* real team */
 .founder-photo{margin:0;position:relative;aspect-ratio:4/5;max-width:100%;border-radius:var(--radius);overflow:hidden;box-shadow:16px 16px 0 -4px var(--orange)}
-.founder-photo::before{content:"";position:absolute;inset:-20px;background:url("https://images.unsplash.com/photo-1739900345763-391d9b62c938?auto=format&fit=crop&w=900&q=60") center/cover;filter:blur(6px) saturate(1.1) brightness(.85)}
-.founder-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,42,48,.15),rgba(11,42,48,.55) 70%,rgba(11,42,48,.85))}
-.founder-photo img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:94%;width:auto;max-width:none;z-index:1;filter:drop-shadow(0 18px 28px rgba(0,0,0,.45))}
+.founder-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(11,42,48,.45))}
+.founder-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .team-real{background:var(--mist)}
-.crew-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.crew-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1040px;margin-inline:auto}
 .crew-card{margin:0;position:relative;aspect-ratio:4/5;max-width:100%;border-radius:6px;overflow:hidden;background:var(--navy);isolation:isolate;box-shadow:var(--shadow)}
-.crew-card::before{content:"";position:absolute;inset:-16px;z-index:-2;background:var(--bg) center/cover;filter:blur(4px) saturate(1.1) brightness(.92);transition:transform .6s}
-.crew-card::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 95%,rgba(247,183,49,.28),transparent 55%),linear-gradient(180deg,rgba(7,28,32,.05) 30%,rgba(7,28,32,.55) 80%,rgba(7,28,32,.92))}
-.crew-card img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:86%;width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.45));transition:transform .5s}
-.crew-card:hover img{transform:translateX(-50%) translateY(-6px)}
-.crew-card:hover::before{transform:scale(1.06)}
+.crew-card::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 60%,rgba(7,28,32,.7))}
+.crew-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;transition:transform .6s}
+.crew-card:hover img{transform:scale(1.04)}
 .crew-card figcaption{position:absolute;inset:auto 0 0 0;padding:14px 18px;z-index:2;color:#fff;font-family:var(--f-display);font-weight:700;letter-spacing:.06em;font-size:1.05rem;background:linear-gradient(0deg,rgba(7,28,32,.95),rgba(7,28,32,0));display:flex;align-items:center;gap:10px}
 .crew-card figcaption::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--amber)}
 .crew-card figcaption::after{content:"";position:absolute;inset:auto 0 0 0;height:4px;background:var(--brand)}
 @media (max-width:900px){.crew-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.crew-grid{grid-template-columns:1fr;max-width:420px}}
 /* footer */
 footer{background:var(--deep);color:#b4c8cb;font-size:.92rem;position:relative}
 footer::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--brand)}
@@ -497,10 +495,9 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 <section class="sec team-real" id="team"><div class="wrap">
   <div class="sec-head"><div><span class="kicker">Meet the team</span><h2>Our own people, in Z‑Link uniform.</h2></div><p>No agency labour and no strangers on your site. These are our own staff, and they are the people who turn up to do the work.</p></div>
   <div class="crew-grid">
-    <figure class="crew-card reveal" style="--bg:url('https://images.unsplash.com/photo-1739900345763-391d9b62c938?auto=format&fit=crop&w=700&q=60')"><img src="assets/team/cut-2.webp" alt="Moiz Husain, Managing Director" width="620" height="760"><figcaption>Z-Link team</figcaption></figure>
-    <figure class="crew-card reveal" style="--bg:url('https://images.unsplash.com/photo-1762356731874-b4042915d34c?auto=format&fit=crop&w=700&q=60')"><img src="assets/team/cut-1.webp" alt="Z-Link team member" width="620" height="760"><figcaption>Z-Link team</figcaption></figure>
-    <figure class="crew-card reveal" style="--bg:url('https://images.unsplash.com/photo-1629957654589-ad5aea15152c?auto=format&fit=crop&w=700&q=60')"><img src="assets/team/cut-4.webp" alt="Z-Link team member" width="620" height="760"><figcaption>Z-Link team</figcaption></figure>
-    <figure class="crew-card reveal" style="--bg:url('https://images.unsplash.com/photo-1743819336189-71deffe7835b?auto=format&fit=crop&w=700&q=60')"><img src="assets/team/cut-3.webp" alt="Z-Link team member" width="620" height="760"><figcaption>Z-Link team</figcaption></figure>
+    <figure class="crew-card reveal"><img src="assets/team/moiz.webp" alt="Moiz Husain, Managing Director, on a Dubai site" width="700" height="910" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
+    <figure class="crew-card reveal"><img src="assets/team/team-1.webp" alt="Z-Link site foreman" width="700" height="910" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
+    <figure class="crew-card reveal"><img src="assets/team/team-4.webp" alt="Z-Link site technician" width="700" height="910" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
   </div>
 </div></section>
 <section class="safety" id="safety">
@@ -547,7 +544,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 </div></section>
 
 <section class="founder"><div class="wrap">
-  <figure class="founder-photo"><img src="assets/team/cut-2.webp" alt="Moiz Husain, Managing Director of Z-Link" width="618" height="760" loading="lazy"></figure>
+  <figure class="founder-photo"><img src="assets/team/moiz.webp" alt="Moiz Husain, Managing Director of Z-Link" width="700" height="910" loading="lazy"></figure>
   <div class="reveal">
     <span class="kicker">From the Managing Director</span>
     <blockquote>"I read every BOQ and visit every site. If it carries our name, I answer for it."</blockquote>
