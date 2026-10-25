@@ -321,6 +321,20 @@ dialog.cert::backdrop{background:rgba(7,28,32,.8)}
 dialog.cert img{width:100%;border-radius:4px}
 @media (max-width:860px){.train .wrap{grid-template-columns:1fr}.train dl{grid-template-columns:1fr;gap:2px}.train dd{margin-bottom:10px}}
 
+
+/* real team */
+.founder-photo{margin:0;position:relative;aspect-ratio:4/5;max-width:100%;border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.18),16px 16px 0 -4px var(--orange)}
+.founder-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.team-real{background:var(--mist)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.team-card{margin:0;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 0 var(--line);position:relative}
+.team-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--brand);z-index:1}
+.team-card img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 25%;transition:transform .5s}
+.team-card:hover img{transform:scale(1.04)}
+.team-card figcaption{padding:14px 18px;font-family:var(--f-display);font-weight:700;font-size:1.05rem;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.team-card figcaption::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--teal)}
+@media (max-width:900px){.team-grid{grid-template-columns:1fr 1fr}}
+
 /* footer */
 footer{background:var(--deep);color:#b4c8cb;font-size:.92rem;position:relative}
 footer::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--brand)}
@@ -475,6 +489,16 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   </div>
 </div></section>
 
+
+<section class="sec team-real" id="team"><div class="wrap">
+  <div class="sec-head"><div><span class="kicker">Meet the team</span><h2>Real people. Z-Link uniform.</h2></div><p>No agency labour and no strangers on your site. These are our own staff, and they are the people who turn up to do the work.</p></div>
+  <div class="team-grid">
+    <figure class="team-card reveal"><img src="assets/team/staff-2.jpg" alt="Z-Link team member" width="600" height="771" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
+    <figure class="team-card reveal"><img src="assets/team/staff-1.jpg" alt="Z-Link team member" width="600" height="771" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
+    <figure class="team-card reveal"><img src="assets/team/staff-4.jpg" alt="Z-Link team member" width="600" height="771" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
+    <figure class="team-card reveal"><img src="assets/team/staff-3.jpg" alt="Z-Link team member" width="600" height="771" loading="lazy"><figcaption>Z-Link team</figcaption></figure>
+  </div>
+</div></section>
 <section class="safety" id="safety">
   <img src="https://images.unsplash.com/photo-1662309376159-b95fb193d96b?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy">
   <div class="wrap">
@@ -519,7 +543,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 </div></section>
 
 <section class="founder"><div class="wrap">
-  <div class="mono"><div><img src="https://zlink.ae/assets/images/logo.png" alt="">FOUNDER PHOTO</div></div>
+  <figure class="founder-photo"><img src="assets/team/staff-2.jpg" alt="Moiz Husain, Managing Director of Z-Link" width="600" height="771" loading="lazy"></figure>
   <div class="reveal">
     <span class="kicker">From the Managing Director</span>
     <blockquote>"I read every BOQ and visit every site. If it carries our name, I answer for it."</blockquote>
