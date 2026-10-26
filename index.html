@@ -225,7 +225,7 @@ section.sec{padding-block:100px}
 
 /* projects */
 .projects-sec{background:var(--mist)}
-.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
 .proj{background:#fff;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 2px 0 var(--line);transition:transform .25s,box-shadow .25s}
 .proj:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .proj .slot{aspect-ratio:16/10;max-width:100%;background:repeating-linear-gradient(-45deg,#e8eeee 0 12px,#f2f6f6 12px 24px);display:grid;place-items:center;color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-align:center;padding:12px}
@@ -233,7 +233,7 @@ section.sec{padding-block:100px}
 .proj .t{font-size:.76rem;font-weight:700;letter-spacing:.12em;color:var(--orange);text-transform:uppercase}
 .proj .q{font-family:var(--f-display);font-size:2.1rem;font-weight:800;color:var(--navy);line-height:1}
 .proj p{color:var(--muted);font-size:.94rem}
-@media (max-width:900px){.projects{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.projects{grid-template-columns:1fr}}
 @media (max-width:560px){.projects{grid-template-columns:1fr}}
 
 /* process */
@@ -379,6 +379,11 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 .area p{line-height:1.6}
 .area small{display:block;margin-top:12px;color:var(--muted);font-size:.8rem}
 @media (max-width:900px){.area-grid{grid-template-columns:1fr}}
+.proj .ph{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#fff}
+.proj .ph img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3;transition:transform .5s}
+.proj .ph img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+.proj:hover .ph img:first-child{transform:scale(1.03)}
+.proj .ph{overflow:hidden}
 </style>
 </head>
 <body>
@@ -546,11 +551,12 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 </div></section>
 
 <section class="sec projects-sec" id="projects"><div class="wrap">
-  <div class="sec-head"><div><span class="kicker">Recent projects</span><h2>Work we have delivered.</h2></div><p>Clients are described by type. References are available on request with their permission.</p></div>
+  <div class="sec-head"><div><span class="kicker">Recent projects</span><h2>Work we have delivered.</h2></div><p>Our own site photos. Clients are described by type, and references are available on request with their permission.</p></div>
   <div class="projects">
-    <article class="proj reveal"><div class="slot">Z-LINK PROJECT PHOTO<br>(own photo only)</div><div class="b"><span class="t">Epoxy · International City</span><span class="q">5,100 m²</span><h3>Residential tower car park</h3><p>Multi-level car park floor coating, phased around live parking.</p></div></article>
-    <article class="proj reveal"><div class="slot">Z-LINK PROJECT PHOTO<br>(own photo only)</div><div class="b"><span class="t">Fit-out · International City</span><span class="q">Post-fire</span><h3>Restaurant reinstatement</h3><p>Strip-out, civil repair and full fit-out after a kitchen fire.</p></div></article>
-    <article class="proj reveal"><div class="slot">Z-LINK PROJECT PHOTO<br>(own photo only)</div><div class="b"><span class="t">Waterproofing · Sharjah</span><span class="q">Factory roof</span><h3>Industrial roof leak repair</h3><p>Leak survey and membrane system without stopping production.</p></div></article>
+    <article class="proj reveal"><div class="ph"><img src="assets/projects/dwc-1.webp" alt="Z-Link crew laying anti-slip epoxy at an airport parking bay in Dubai South" loading="lazy" width="620" height="387"><img src="assets/projects/dwc-2.webp" alt="Z-Link crew laying anti-slip epoxy at an airport parking bay in Dubai South, work in progress" loading="lazy" width="465" height="348"><img src="assets/projects/dwc-3.webp" alt="Z-Link crew laying anti-slip epoxy at an airport parking bay in Dubai South, detail" loading="lazy" width="465" height="348"></div><div class="b"><span class="t">Epoxy flooring · Dubai South</span><span class="q">1,900 m²</span><h3>Airport vehicle parking bay</h3><p>Anti-slip epoxy with aggregate broadcast at Al Maktoum International Airport (DWC), delivered as specialist subcontractor.</p></div></article>
+    <article class="proj reveal"><div class="ph"><img src="assets/projects/enpi-1.webp" alt="Finished glossy epoxy floor in a Sharjah factory warehouse" loading="lazy" width="620" height="387"><img src="assets/projects/enpi-2.webp" alt="Finished glossy epoxy floor in a Sharjah factory warehouse, work in progress" loading="lazy" width="465" height="348"><img src="assets/projects/enpi-3.webp" alt="Finished glossy epoxy floor in a Sharjah factory warehouse, detail" loading="lazy" width="465" height="348"></div><div class="b"><span class="t">Epoxy flooring · Industrial Area 5, Sharjah</span><span class="q">1,250 m²</span><h3>Film factory warehouse</h3><p>Industrial epoxy floor for a packaging-film manufacturer’s warehouse, completed in 2025.</p></div></article>
+    <article class="proj reveal"><div class="ph"><img src="assets/projects/cupco-1.webp" alt="Factory floor with new epoxy and yellow line marking in Sharjah" loading="lazy" width="620" height="387"><img src="assets/projects/cupco-2.webp" alt="Factory floor with new epoxy and yellow line marking in Sharjah, work in progress" loading="lazy" width="465" height="348"><img src="assets/projects/cupco-3.webp" alt="Factory floor with new epoxy and yellow line marking in Sharjah, detail" loading="lazy" width="465" height="348"></div><div class="b"><span class="t">Epoxy flooring · Industrial Area 15, Sharjah</span><span class="q">Live factory</span><h3>Factory floor upgrade</h3><p>Diamond grinding, epoxy coating and yellow safety line marking inside a working factory.</p></div></article>
+    <article class="proj reveal"><div class="ph"><img src="assets/projects/steel-1.webp" alt="Coated steel brackets on drying racks at the Z-Link workshop" loading="lazy" width="620" height="387"><img src="assets/projects/steel-2.webp" alt="Coated steel brackets on drying racks at the Z-Link workshop, work in progress" loading="lazy" width="465" height="348"><img src="assets/projects/steel-3.webp" alt="Coated steel brackets on drying racks at the Z-Link workshop, detail" loading="lazy" width="465" height="348"></div><div class="b"><span class="t">Industrial coatings · Al Sajaa workshop</span><span class="q">27 MT+</span><h3>Steel brackets for façade and metal fabricators</h3><p>Blast cleaning, Penguard primer and Hardtop XP topcoat to a C5-M system, dry-film thickness checked on every batch.</p></div></article>
   </div>
 </div></section>
 
