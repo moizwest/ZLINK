@@ -43,14 +43,12 @@ assert abs(sum(ITEM_COLS) - USABLE) < 0.2, sum(ITEM_COLS)
 
 BANNER_W = PAGE_W                      # full bleed
 BANNER_H = 28.96
-# Watermark footprint measured off the genuine proforma: the logo spans
-# 163.7 mm (77.9% of page width) with its vertical centre at 48.9% of page
-# height. Height follows the logo's own aspect so the artwork is never stretched.
-WM_W = 163.7
-WM_CENTRE_Y = PAGE_H * 0.489
-from PIL import Image as _PILImage
-_w, _h = _PILImage.open(f'{ART}/watermark.png').size
-WM_H = WM_W * _h / _w
+# Watermark: lifted at full page resolution from the genuine proforma, so the
+# ring colours stay saturated. It is ALREADY at its 16% opacity - do not fade it
+# again, and do not rebuild it by upscaling the small banner logo, which washes
+# the colour out to grey. Placement is the measured footprint on the genuine page.
+WM_X, WM_Y = 19.8, 79.2
+WM_W, WM_H = 170.2, 152.9
 STRAP_W = 139.4                        # ink measures 64.2% of page width
 EMU_MM = 36000
 
@@ -114,8 +112,7 @@ def new_document(doc_ref, show_page_numbers=True):
     # ---- watermark: anchored to the page, behind all content ----
     wr = hp.add_run()
     wr.add_picture(WATERMARK, width=Mm(WM_W), height=Mm(WM_H))
-    _float_behind(wr, (PAGE_W - WM_W) / 2.0, WM_CENTRE_Y - WM_H / 2.0,
-                  'Z-Link watermark')
+    _float_behind(wr, WM_X, WM_Y, 'Z-Link watermark')
 
     # ---- footer: reference line over the strapline artwork ----
     ref = s.footer.paragraphs[0]
