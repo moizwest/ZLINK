@@ -35,6 +35,12 @@ MARGIN_BOTTOM, FOOTER_DIST = 19.8, 5.3
 HEADER_DIST = 0.8
 USABLE = PAGE_W - 2 * MARGIN_SIDE      # 190.0 mm text block
 
+# Geometry measured off the genuine proforma ZL/PI/10356/01 at 200 dpi.
+TOP_BOXES = [94.9, 95.0]                               # equal halves
+ITEM_COLS = [12.2, 86.4, 15.9, 14.2, 31.7, 29.5]       # SR/DESC/UNIT/QTY/RATE/TOTAL
+BANK_COLS = [37.6, 80.0]                               # 117.6 mm overall, left aligned
+assert abs(sum(ITEM_COLS) - USABLE) < 0.2, sum(ITEM_COLS)
+
 BANNER_W = PAGE_W                      # full bleed
 BANNER_H = 28.96
 WM_W = PAGE_W * 0.81                   # 170.1 mm
@@ -88,7 +94,7 @@ def new_document(doc_ref, show_page_numbers=True):
 
     st = doc.styles['Normal']
     st.font.name = FONT
-    st.font.size = Pt(9.5)
+    st.font.size = Pt(10)
     st._element.rPr.rFonts.set(qn('w:eastAsia'), FONT)
 
     # ---- header: banner, full bleed, anchored to the page ----
@@ -139,7 +145,7 @@ def new_document(doc_ref, show_page_numbers=True):
 
 # ---------- shared body helpers (no solid fills anywhere) ----------
 
-def para(doc, text='', size=9.5, bold=False, color=None, align=None, after=2,
+def para(doc, text='', size=10, bold=False, color=None, align=None, after=2,
          italic=False, underline=False):
     p = doc.add_paragraph()
     p.paragraph_format.space_after = Pt(after)
@@ -158,10 +164,24 @@ def _twips(mm):
     return str(int(mm * 56.7))
 
 
-def fix_grid(table, widths_mm):
-    """Pin the table to a fixed layout with explicit column widths."""
+def fix_grid(table, widths_mm, cell_margin_mm=1.2):
+    """Pin the table to a fixed layout with explicit column widths.
+
+    cell_margin_mm sets the left/right cell padding. The genuine documents sit
+    text close to the rule; Word's 1.9 mm default makes narrow columns wrap.
+    """
     tbl = table._tbl
     tblPr = tbl.tblPr
+    for el in tblPr.findall(qn('w:tblCellMar')):
+        tblPr.remove(el)
+    mar = OxmlElement('w:tblCellMar')
+    for side, val in (('left', cell_margin_mm), ('right', cell_margin_mm),
+                      ('top', 0.5), ('bottom', 0.5)):
+        e = OxmlElement('w:%s' % side)
+        e.set(qn('w:w'), str(int(val * 56.7)))
+        e.set(qn('w:type'), 'dxa')
+        mar.append(e)
+    tblPr.append(mar)
     for el in tblPr.findall(qn('w:tblLayout')):
         tblPr.remove(el)
     lay = OxmlElement('w:tblLayout'); lay.set(qn('w:type'), 'fixed'); tblPr.append(lay)
@@ -177,7 +197,7 @@ def fix_grid(table, widths_mm):
                 c.width = Mm(widths_mm[i])
 
 
-def cellset(cell, txt, size=9, bold=False, color=None, align=None):
+def cellset(cell, txt, size=10, bold=False, color=None, align=None):
     cell.text = ''
     p = cell.paragraphs[0]
     p.paragraph_format.space_after = Pt(1)
@@ -191,7 +211,7 @@ def cellset(cell, txt, size=9, bold=False, color=None, align=None):
     return cell
 
 
-def cell_lines(cell, lines, size=9, first_bold=True):
+def cell_lines(cell, lines, size=10, first_bold=True):
     cell.text = ''
     for k, ln in enumerate(lines):
         p = cell.paragraphs[0] if k == 0 else cell.add_paragraph()

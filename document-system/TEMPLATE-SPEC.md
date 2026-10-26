@@ -44,6 +44,59 @@ in Claude's memory and in the private office system.
 
 ---
 
+## B+. Measured geometry and colour — taken off the genuine proforma at 200 dpi
+
+These are measurements, not estimates. `zlink_doc.py` carries them as constants.
+
+### Type
+
+Body text is **10 pt Calibri**. Verified by width: "Z LINK TECHNICAL SERVICES
+CONTRACTING CO LLC" measures **73.0 mm** on the genuine document, and Carlito
+(metric-compatible with Calibri) renders that string at exactly 73.0 mm at 10 pt.
+9.5 pt gives 67.8 mm and 11 pt gives 80.8 mm — neither matches.
+
+Title is 14 pt bold, underlined. Table header row is 10 pt bold.
+
+### Colour — navy is used sparingly
+
+| Element | Colour |
+|---|---|
+| Title (`TAX INVOICE` / `PROFORMA INVOICE`) | **Navy** `#1F3864` |
+| Line-item table **header row** | **Navy** `#1F3864` |
+| `RAK BANK` in the bank header | **Red** `#C00000` |
+| Everything else | **Black** |
+
+That includes the line-item description, the SR NO, the UNIT, QTY, RATE and
+TOTAL AMOUNT values, the GROSS TOTAL / VAT @ 5% / NET TOTAL labels **and their
+figures**, Total in Words, Payment Terms, the bank labels and values, and the
+signatory block. Putting navy on the totals or the description is wrong.
+
+### Column geometry (mm)
+
+| Table | Columns |
+|---|---|
+| Top boxes | `94.9 / 95.0` — equal halves, divider at 105.1 mm, table top at the 34 mm margin |
+| Line items | `12.2 / 86.4 / 15.9 / 14.2 / 31.7 / 29.5` = 190.0 mm |
+| Bank block | `37.6 / 80.0` = 117.6 mm, left aligned |
+
+Verticals on the genuine fall at 10.2, 22.4, 108.8, 124.7, 138.9, 170.6 and
+200.1 mm, and the bank table at 10.2, 50.5 and 127.8 mm. The bank split is set
+to 37.6 / 80.0 rather than the measured 40.3 / 77.3 so the account-name line
+does not wrap under the substituted font; overall width is unchanged.
+
+### Cell padding and rows
+
+Cell side padding **1.2 mm**, top and bottom 0.5 mm. Word's 1.9 mm default makes
+`SR NO` and the account name wrap, which they do not on the genuine document.
+Bank and totals rows measure **7.0 mm** tall.
+
+### Bank header row
+
+Two cells, **not merged**: `RAK BANK` in red plus ` DETAILS` in black in the
+left cell, the right cell empty.
+
+---
+
 ## C. Output set
 
 Every tax invoice and proforma invoice is delivered as **DOCX + PDF + JPEG**.
