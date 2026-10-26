@@ -45,8 +45,9 @@ template — never per document.
 | `zlink_doc.py` | The template module. Page setup, artwork placement, shared body helpers. |
 | `artwork/banner.png` | Navy bilingual banner, full bleed. Extracted at 200 dpi from proforma ZL/PI/10356/01. |
 | `artwork/strapline.png` | Footer strapline artwork. Ink measures 64.2% of page width. |
-| `artwork/logo.png` | Z-Link logo lockup, 300 dpi, extracted from the banner of tax invoice MW/10/1228. |
-| `artwork/watermark.png` | The logo scaled to 81% page width and faded to 16% over white. Regenerate from `logo.png` if the fade ever changes. |
+| `artwork/logo-master.pdf` | **The original vector Z-Link logo**, supplied by the Managing Director 26 Oct 2026. This is the master for every use of the logo - render it at whatever resolution is needed. |
+| `artwork/logo.png` | The master rendered at 1200 dpi, for convenience. |
+| `artwork/watermark.png` | The vector master scaled to 170.2 mm wide and faded with factor 0.157. Regenerate from `logo-master.pdf`, never from a scan. |
 | `TEMPLATE-SPEC.md` | The approved format, clause by clause, with the audit checklist. |
 
 ---

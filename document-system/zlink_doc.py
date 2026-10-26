@@ -43,12 +43,15 @@ assert abs(sum(ITEM_COLS) - USABLE) < 0.2, sum(ITEM_COLS)
 
 BANNER_W = PAGE_W                      # full bleed
 BANNER_H = 28.96
-# Watermark: lifted at full page resolution from the genuine proforma, so the
-# ring colours stay saturated. It is ALREADY at its 16% opacity - do not fade it
-# again, and do not rebuild it by upscaling the small banner logo, which washes
-# the colour out to grey. Placement is the measured footprint on the genuine page.
+# Watermark: rendered from the ORIGINAL VECTOR LOGO, artwork/logo-master.pdf,
+# supplied by the MD on 26 Oct 2026. Render the PDF at 1200 dpi, trim to the
+# artwork, scale to WM_W and fade with factor 0.157 over white. Never rebuild it
+# from a scan or by upscaling the small logo in the banner - both give a dirty,
+# speckled, desaturated result. The vector logo's aspect is 0.900, matching the
+# 0.898 footprint measured on the genuine document.
 WM_X, WM_Y = 19.8, 79.2
-WM_W, WM_H = 170.2, 152.9
+WM_W, WM_H = 170.2, 153.1
+WM_FADE = 0.157
 STRAP_W = 139.4                        # ink measures 64.2% of page width
 EMU_MM = 36000
 
