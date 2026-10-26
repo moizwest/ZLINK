@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Great+Vibes&display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"GeneralContractor","name":"Z-Link Technical Services Contracting Co. LLC","url":"https://zlink.ae","logo":"https://zlink.ae/assets/images/logo.png","telephone":"+971559495833","email":"moiz@zlink.ae","address":{"@type":"PostalAddress","streetAddress":"Office 201, Bay Square, Business Bay","addressLocality":"Dubai","addressCountry":"AE"},"areaServed":["Dubai","Sharjah","Abu Dhabi","Ajman","Umm Al Quwain","Ras Al Khaimah","Fujairah"],"knowsAbout":["Waterproofing","Epoxy flooring","Industrial coatings","Civil works","Painting","Fire systems","Landscaping","Fit-out"]}
 </script>
@@ -366,6 +366,20 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 .fab .top svg{width:22px;height:22px}
 
 
+
+/* Founder statement, executive layout */
+.founder-body{position:relative}
+.fq-mark{display:block;font-family:Georgia,"Times New Roman",serif;font-size:7.5rem;line-height:.6;height:.42em;margin-top:18px;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.founder blockquote{margin:6px 0 0;font-size:clamp(2rem,3.6vw,3.1rem);line-height:1.08;letter-spacing:-.01em;max-width:18ch}
+.founder-lead{margin:22px 0 0;max-width:58ch;color:#c9d8da;font-size:1.08rem;line-height:1.7}
+.founder-sign{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14)}
+.founder-sign .sig{font-family:"Great Vibes",cursive;font-size:2.7rem;line-height:1;color:#f6b042;transform:rotate(-4deg);padding-bottom:4px}
+.founder-sign .who{margin:0}
+.founder-creds{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:620px}
+.founder-creds li{border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:14px 16px;background:rgba(255,255,255,.03)}
+.founder-creds b{display:block;font-family:var(--f-display);font-size:1.5rem;color:#fff}
+.founder-creds span{display:block;font-size:.82rem;color:#9fb6b9;margin-top:2px}
+@media (max-width:600px){.founder-creds{grid-template-columns:1fr}.fq-mark{font-size:5.5rem}}
 /* Floating Z-Link logo: starts centre, floats to the side, zooms, blinks */
 .has-wm{position:relative;overflow:hidden;isolation:isolate}
 .has-wm>.wrap{position:relative;z-index:1}
@@ -589,10 +603,20 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 
 <section class="founder"><div class="wrap">
   <figure class="founder-photo"><img src="assets/team/moiz-md.webp" alt="Moiz Husain, Managing Director of Z-Link" width="880" height="1100" loading="lazy"></figure>
-  <div class="reveal">
-    <span class="kicker">From the Managing Director</span>
-    <blockquote>"I read every BOQ and visit every site. If it carries our name, I answer for it."</blockquote>
-    <p class="who">MOIZ HUSAIN<span>Managing Director, Z-Link Technical Services Contracting</span></p>
+  <div class="reveal founder-body">
+    <span class="kicker">A word from the Managing Director</span>
+    <span class="fq-mark" aria-hidden="true">&ldquo;</span>
+    <blockquote>Our name goes on the work only when the work is right.</blockquote>
+    <p class="founder-lead">For more than fifteen years, Z-Link has been built on one principle: the standard you see on handover day is the standard we promised on day one. I personally review every scope and stay close to every site, so each commitment we make is one we keep.</p>
+    <div class="founder-sign">
+      <span class="sig" aria-hidden="true">Moiz Husain</span>
+      <p class="who">MOIZ HUSAIN<span>Managing Director, Z-Link Technical Services Contracting Co. LLC</span></p>
+    </div>
+    <ul class="founder-creds">
+      <li><b>15+</b><span>Years in UAE contracting</span></li>
+      <li><b>8</b><span>Trades delivered in-house</span></li>
+      <li><b>#1245333</b><span>Dubai licensed contractor</span></li>
+    </ul>
   </div>
 </div></section>
 
