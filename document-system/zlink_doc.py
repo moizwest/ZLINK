@@ -236,9 +236,16 @@ def top_boxes(doc, client_lines, invoice_lines):
     EMAIL ID). RIGHT: the invoice block (INVOICE/PROFORMA INVOICE no., Date,
     Contact: Moiz Husain, LPO No, Quote Ref, Project Location, Subject).
 
-    MD RULE 27 Oct 2026: EVERY line in BOTH boxes is BOLD. Permanent. Do not
-    build these boxes any other way.
+    MD RULES 27 Oct 2026, permanent — do not build these boxes any other way:
+      * EVERY line in BOTH boxes is BOLD.
+      * One BLANK line sits between the client TRN line and the CONTACT line
+        in the left box (inserted here automatically if the caller omits it).
     """
+    client_lines = list(client_lines)
+    for i, ln in enumerate(client_lines[:-1]):
+        if ln.strip().upper().startswith('TRN') and client_lines[i + 1].strip():
+            client_lines.insert(i + 1, '')
+            break
     t = doc.add_table(rows=1, cols=2)
     t.style = 'Table Grid'
     fix_grid(t, TOP_BOXES)
