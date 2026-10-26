@@ -384,8 +384,18 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 
 
 /* Website chat assistant */
-.fab .zc-launch{background:linear-gradient(135deg,var(--orange),#d94d10);position:relative}
-.fab .zc-launch svg{width:28px;height:28px}
+.fab .zc-launch{width:auto;height:auto;padding:0;background:none;border-radius:0;box-shadow:none;position:relative;justify-self:end;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fab .zc-launch img{display:block;height:132px;width:auto;animation:zcNeon 2.4s ease-in-out infinite,zcBob 3.2s ease-in-out infinite;transform-origin:50% 100%;transition:transform .25s}
+.fab .zc-launch:hover img,.fab .zc-launch:focus-visible img{transform:scale(1.08) rotate(-3deg)}
+.fab .zc-launch:focus-visible{outline:none}
+@keyframes zcNeon{0%,100%{filter:drop-shadow(0 0 3px #ff7a2e) drop-shadow(0 0 10px rgba(255,98,20,.95)) drop-shadow(0 0 24px rgba(255,98,20,.75))}50%{filter:drop-shadow(0 0 3px #3ff5e8) drop-shadow(0 0 12px rgba(28,226,214,.95)) drop-shadow(0 0 28px rgba(28,190,180,.8))}}
+@keyframes zcBob{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.zc-tip{position:absolute;right:calc(100% + 6px);top:18px;white-space:nowrap;background:#fff;color:var(--ink);font-size:.8rem;font-weight:700;padding:8px 12px;border-radius:12px 12px 2px 12px;box-shadow:0 8px 22px rgba(7,28,32,.22);animation:zcTip 9s ease-in-out infinite;pointer-events:none}
+@keyframes zcTip{0%,8%{opacity:0;transform:translateY(6px)}12%,45%{opacity:1;transform:none}50%,100%{opacity:0;transform:translateY(6px)}}
+.zc-launch[aria-expanded="true"] .zc-tip{display:none}
+.fab .zc-launch .zc-badge{top:4px;right:6px}
+@media (max-width:520px){.fab .zc-launch img{height:96px}.zc-tip{font-size:.74rem;top:10px}}
+@media (prefers-reduced-motion:reduce){.fab .zc-launch img{animation:none;filter:drop-shadow(0 0 8px rgba(242,97,29,.8))}.zc-tip{animation:none;opacity:1}}
 .zc-badge{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:var(--teal);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
 .zc{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(max(18px,env(safe-area-inset-bottom,0px)) + 76px);width:min(380px,calc(100vw - 32px));height:min(600px,calc(100dvh - 120px));display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 30px 70px rgba(7,28,32,.35);z-index:1001;overflow:hidden;border:1px solid var(--line);transform-origin:bottom right;animation:zcIn .25s ease}
 .zc[hidden]{display:none}
@@ -915,7 +925,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   </form>
 </section>
 <div class="fab">
-  <button class="zc-launch" type="button" aria-label="Chat with Z-Link" aria-controls="zc" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="3" stroke-linecap="round"/></svg><span class="zc-badge" hidden>1</span></button>
+  <button class="zc-launch" type="button" aria-label="Chat with Z-Link" aria-controls="zc" aria-expanded="false"><span class="zc-tip" aria-hidden="true">Need help? Chat with us</span><img src="assets/images/mascot.webp" alt="" width="199" height="360"><span class="zc-badge" hidden>1</span></button>
   <a class="wa" href="https://wa.me/971559495833?text=Hello%20Z-Link%2C%20I%20have%20an%20enquiry" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
   <button class="top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 </div>
