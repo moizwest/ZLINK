@@ -762,8 +762,8 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 </script>
 <script>
 (function(){
-  var ids=['about','services','training','people','team','sectors','areas','projects','process','faq','contact'],items=[];
-  ids.forEach(function(id,n){var sec=document.getElementById(id);if(!sec)return;sec.classList.add('has-wm');var w=document.createElement('div');w.className='wm';w.setAttribute('aria-hidden','true');w.appendChild(document.createElement('i'));sec.insertBefore(w,sec.firstChild);items.push({sec:sec,el:w,on:false})});
+  var LEFT=['contact','faq'];var ids=['about','services','training','people','team','sectors','areas','projects','process','faq','contact'],items=[];
+  ids.forEach(function(id,n){var sec=document.getElementById(id);if(!sec)return;sec.classList.add('has-wm');var w=document.createElement('div');w.className='wm';w.setAttribute('aria-hidden','true');w.appendChild(document.createElement('i'));sec.insertBefore(w,sec.firstChild);items.push({sec:sec,el:w,on:false,left:LEFT.indexOf(id)>-1})});
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   var io=new IntersectionObserver(function(es){es.forEach(function(e){items.forEach(function(it){if(it.sec===e.target)it.on=e.isIntersecting})});tick()},{rootMargin:'200px 0px'});
   items.forEach(function(it){io.observe(it.sec)});
@@ -774,8 +774,8 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     var k=ease(Math.max(0,Math.min(1,(t-.15)/.5)));
     var sc=mob?1:1+k*.12;
     var W=mob?vw*.88:Math.min(vw*.52,960,(r.height-140)/0.9/sc);it.el.style.width=W+'px';
-    var half=W*sc/2,cx=vw*.5+k*(vw*.62-vw*.5);cx=Math.min(cx,vw-24-half);if(mob)cx=vw/2;
-    var y=(t-.5)*-60,rot=k*-4;
+    var half=W*sc/2,cx;if(it.left){cx=vw*.5+k*(vw*.25-vw*.5);cx=Math.max(cx,24+half)}else{cx=vw*.5+k*(vw*.62-vw*.5);cx=Math.min(cx,vw-24-half)}if(mob)cx=vw/2;
+    var y=(t-.5)*-60,rot=(it.left?4:-4)*k;
     it.el.style.transform='translate3d(calc(-50% + '+(cx-vw/2)+'px),calc(-50% + '+y+'px),0) scale('+sc+') rotate('+rot+'deg)'})})}
   addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
 })();
