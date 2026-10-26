@@ -383,6 +383,11 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 
 
 
+
+/* marketing consent (optional, unticked) */
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.84rem;line-height:1.45;color:var(--muted);font-weight:400;cursor:pointer}
+.consent input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--orange)}
+.zc-start label.consent{display:flex;font-weight:400;font-size:.8rem}
 /* Website chat assistant */
 .fab .zc-launch{width:auto;height:auto;padding:0;background:none;border-radius:0;box-shadow:none;position:relative;justify-self:end;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .fab .zc-launch img{display:block;height:132px;width:auto;animation:zcNeon 2.4s ease-in-out infinite,zcBob 3.2s ease-in-out infinite;transform-origin:50% 100%;transition:transform .25s}
@@ -863,8 +868,9 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     <label>Emirate<select name="emirate"><option>Dubai</option><option>Sharjah</option><option>Abu Dhabi</option><option>Ajman</option><option>Umm Al Quwain</option><option>Ras Al Khaimah</option><option>Fujairah</option></select></label>
     <label>Service<select name="service" class="svc-select"></select></label>
     <label class="full">Project details<textarea name="details" required placeholder="Location, approximate area and what needs doing"></textarea></label>
+    <label class="consent full"><input type="checkbox" name="consent"><span>Send me Z-Link news and offers by email or WhatsApp (optional). I can opt out at any time.</span></label>
     <div class="full"><button class="btn" type="submit">Send enquiry</button></div>
-    <p class="form-note">We use your details only to reply to your enquiry. We do not share them.</p>
+    <p class="form-note">We use your details to reply to your enquiry and never sell or share them. We send marketing only if you tick the box above.</p>
     <div class="ok" hidden role="status"></div>
   </form>
 </div></section>
@@ -878,8 +884,9 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     <label>Mobile<input name="phone" type="tel" required autocomplete="tel"></label>
     <label>Service<select name="service" class="svc-select"></select></label>
     <label>What needs doing?<textarea name="details" required></textarea></label>
+    <label class="consent"><input type="checkbox" name="consent"><span>Send me Z-Link news and offers by email or WhatsApp (optional). I can opt out at any time.</span></label>
     <button class="btn" type="submit">Send enquiry</button>
-    <p class="form-note">We use your details only to reply to your enquiry. We do not share them.</p>
+    <p class="form-note">We use your details to reply to your enquiry and never sell or share them. We send marketing only if you tick the box above.</p>
     <div class="ok" hidden role="status"></div>
   </form>
 </dialog>
@@ -907,9 +914,10 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
       <label><span>Your name <em>*</em></span><input name="name" autocomplete="name" required maxlength="100" placeholder="e.g. Ahmed Khan"></label>
       <label><span>Mobile or email <em>*</em></span><input name="contact" autocomplete="tel" required maxlength="120" placeholder="+971 5x xxx xxxx or name@company.com"></label>
       <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent zc-consent"><input type="checkbox" name="consent"><span>Send me Z-Link news and offers by email or WhatsApp (optional). I can opt out at any time.</span></label>
       <button type="submit" class="zc-go">Start chat</button>
       <p class="zc-err" role="alert"></p>
-      <p class="zc-fine">We use your details only to answer this enquiry. Messages may be read by the Z-Link team.</p>
+      <p class="zc-fine">We use your details to answer your enquiry and never sell or share them. Marketing only if you tick the box. Messages may be read by the Z-Link team.</p>
     </form>
     <div class="zc-log" hidden></div>
   </div>
@@ -1011,7 +1019,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
       var btn=f.querySelector('button[type=submit]'),ok=f.querySelector('.ok'),fd=new FormData(f);
       btn.disabled=true;btn.textContent='Sending...';
       var body={form:id,name:fd.get('name')||'',company:fd.get('company')||'',mobile:fd.get('phone')||'',email:fd.get('email')||'',
-        emirate:fd.get('emirate')||'',service:fd.get('service')||'',details:fd.get('details')||'',website:fd.get('website')||'',page:location.pathname};
+        emirate:fd.get('emirate')||'',service:fd.get('service')||'',details:fd.get('details')||'',website:fd.get('website')||'',consent:fd.get('consent')==='on',page:location.pathname};
       fetch('https://wismzgbcgyoysrgziljg.supabase.co/functions/v1/zl-web-enquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
         .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
         .then(function(x){
@@ -1071,7 +1079,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     if(name.length<2){err.textContent='Please enter your name.';nameI.focus();return}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(contact)&&!/^\+?[\d\s()-]{7,20}$/.test(contact)){err.textContent='Please enter a valid mobile number or email.';startF.contact.focus();return}
     var b=startF.querySelector('.zc-go'); b.disabled=true; b.textContent='Starting...';
-    api({action:'start',name:name,contact:contact,website:startF.website.value,page:location.pathname+location.hash}).then(function(j){
+    api({action:'start',name:name,contact:contact,website:startF.website.value,consent:startF.querySelector('[name=consent]').checked,page:location.pathname+location.hash}).then(function(j){
       if(!j.ok){err.textContent=j.error||'Could not start the chat.';return}
       S={id:j.chat_id,tk:j.token,ref:j.ref,name:name,h:[]}; save(); chatMode(); add('bot',j.reply); record('bot',j.reply); sendF.m.focus();
     }).catch(function(){err.textContent='Connection problem. Please WhatsApp +971 55 949 5833.'}).finally(function(){b.disabled=false;b.textContent='Start chat'});
