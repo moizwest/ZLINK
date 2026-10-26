@@ -762,7 +762,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 </script>
 <script>
 (function(){
-  var ids=['about','services','training','sectors','areas'],items=[];
+  var ids=['about','services','training','people','team','sectors','areas','projects','process','faq','contact'],items=[];
   ids.forEach(function(id,n){var sec=document.getElementById(id);if(!sec)return;sec.classList.add('has-wm');var w=document.createElement('div');w.className='wm';w.setAttribute('aria-hidden','true');w.appendChild(document.createElement('i'));sec.insertBefore(w,sec.firstChild);items.push({sec:sec,el:w,on:false})});
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   var io=new IntersectionObserver(function(es){es.forEach(function(e){items.forEach(function(it){if(it.sec===e.target)it.on=e.isIntersecting})});tick()},{rootMargin:'200px 0px'});
