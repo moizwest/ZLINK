@@ -355,7 +355,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 @media (max-width:520px){footer .wrap.top{grid-template-columns:1fr}}
 
 /* floating actions */
-.fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));display:grid;gap:12px;z-index:40}
+.fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));display:grid;gap:12px;z-index:1000}
 .fab a,.fab button{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);border:0;cursor:pointer}
 .fab .wa{background:#25D366;position:relative}
 .fab .wa::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(37,211,102,.6);animation:pulse 2.4s infinite}
@@ -382,6 +382,58 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 @media (max-width:600px){.founder-creds{grid-template-columns:1fr}.fq-mark{font-size:5.5rem}}
 
 
+
+/* Website chat assistant */
+.fab .zc-launch{background:linear-gradient(135deg,var(--orange),#d94d10);position:relative}
+.fab .zc-launch svg{width:28px;height:28px}
+.zc-badge{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:var(--teal);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
+.zc{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(max(18px,env(safe-area-inset-bottom,0px)) + 76px);width:min(380px,calc(100vw - 32px));height:min(600px,calc(100dvh - 120px));display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 30px 70px rgba(7,28,32,.35);z-index:1001;overflow:hidden;border:1px solid var(--line);transform-origin:bottom right;animation:zcIn .25s ease}
+.zc[hidden]{display:none}
+@keyframes zcIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.zc-head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;background:var(--navy);color:#fff;position:relative}
+.zc-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--brand)}
+.zc-head img{background:#fff;border-radius:10px;padding:3px;width:40px;height:auto}
+.zc-head b{display:block;font-size:1rem}
+.zc-status{display:flex;align-items:center;gap:6px;color:#b7cbcd;font-size:.76rem}
+.zc-status i{width:8px;height:8px;border-radius:50%;background:#2fd17c;box-shadow:0 0 0 3px rgba(47,209,124,.25)}
+.zc-x{margin-left:auto;background:none;border:0;color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;width:36px;height:36px;border-radius:50%}
+.zc-x:hover{background:rgba(255,255,255,.12)}
+.zc-body{flex:1;overflow-y:auto;padding:16px;background:var(--mist)}
+.zc-start{display:grid;gap:12px}
+.zc-intro{margin:0;color:var(--ink);font-size:.95rem;line-height:1.55;background:#fff;border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:12px 14px}
+.zc-start label{display:grid;gap:6px;font-size:.84rem;font-weight:600;color:var(--ink)}
+.zc-start label em{color:var(--orange);font-style:normal}
+.zc-start input:not(.hp){font:inherit;font-weight:400;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.zc-start input:focus,.zc-send input:focus{outline:2px solid var(--teal);outline-offset:1px}
+.zc-go{font:inherit;font-weight:700;padding:13px;border:0;border-radius:10px;background:var(--orange);color:#fff;cursor:pointer}
+.zc-go:disabled{opacity:.6;cursor:wait}
+.zc-err{margin:0;color:#b42318;font-size:.84rem;min-height:1em}
+.zc-fine{margin:0;color:var(--muted);font-size:.74rem;line-height:1.5}
+.zc .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.zc-log{display:flex;flex-direction:column;gap:10px}
+.zc-msg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:.93rem;line-height:1.55;white-space:pre-wrap;word-wrap:break-word;animation:zcIn .2s ease}
+.zc-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;color:var(--ink)}
+.zc-msg.me{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px}
+.zc-msg.agent{align-self:flex-start;background:#e7f6f5;border:1px solid #bfe6e3;border-bottom-left-radius:4px;color:var(--ink)}
+.zc-msg.agent::before{content:"Z-Link team";display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0e6f6b;margin-bottom:3px}
+.zc-msg.sys{align-self:center;max-width:100%;background:#fff4ec;border:1px solid #ffd8c2;color:#8a3b0f;font-size:.84rem;text-align:center;border-radius:10px}
+.zc-msg.sys a{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 12px;border-radius:999px;background:#25D366;color:#fff;font-weight:700;text-decoration:none}
+.zc-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.zc-typing i{width:7px;height:7px;border-radius:50%;background:#9aaeb1;animation:zcDot 1s infinite}
+.zc-typing i:nth-child(2){animation-delay:.15s}.zc-typing i:nth-child(3){animation-delay:.3s}
+@keyframes zcDot{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.zc-chips{display:flex;gap:8px;overflow-x:auto;padding:10px 12px 4px;background:#fff;border-top:1px solid var(--line);scrollbar-width:none}
+.zc-chips[hidden]{display:none}
+.zc-chips button{flex:none;font:inherit;font-size:.8rem;font-weight:600;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.zc-chips button:hover{border-color:var(--teal);color:var(--teal)}
+.zc-chips button[data-human]{border-color:#ffd8c2;color:#b8460f}
+.zc-send{display:flex;gap:8px;padding:10px 12px 12px;background:#fff}
+.zc-send[hidden]{display:none}
+.zc-send input{flex:1;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:999px;min-width:0}
+.zc-send button{width:46px;height:46px;flex:none;border-radius:50%;border:0;background:var(--orange);color:#fff;display:grid;place-items:center;cursor:pointer}
+.zc-send button svg{width:20px;height:20px}
+@media (max-width:520px){.zc{right:0;left:0;top:0;bottom:0;width:auto;height:auto;border-radius:0;border:0}}
+@media (prefers-reduced-motion:reduce){.zc,.zc-msg{animation:none}.zc-typing i{animation:none}}
 /* Google reviews */
 .reviews{background:var(--mist)}
 .rv-score{display:flex;align-items:center;gap:16px;justify-self:end}
@@ -832,7 +884,38 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   <div class="bar"><div class="wrap"><span>© <span id="yr">2026</span> Z-Link Technical Services Contracting Co. LLC · Dubai trade licence 1245333</span><span>Stock photography: Unsplash</span></div></div>
 </footer>
 
+
+<section class="zc" id="zc" role="dialog" aria-modal="false" aria-labelledby="zc-title" hidden>
+  <header class="zc-head">
+    <img src="assets/images/logo.png" alt="" width="40" height="36">
+    <div><b id="zc-title">Z-Link Assistant</b><small class="zc-status"><i></i>Online · team on standby</small></div>
+    <button class="zc-x" type="button" aria-label="Close chat">&times;</button>
+  </header>
+  <div class="zc-body" aria-live="polite">
+    <form class="zc-start" novalidate>
+      <p class="zc-intro">Hello! Before we start, please tell us who we're talking to, so our team can follow up if needed.</p>
+      <label><span>Your name <em>*</em></span><input name="name" autocomplete="name" required maxlength="100" placeholder="e.g. Ahmed Khan"></label>
+      <label><span>Mobile or email <em>*</em></span><input name="contact" autocomplete="tel" required maxlength="120" placeholder="+971 5x xxx xxxx or name@company.com"></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="zc-go">Start chat</button>
+      <p class="zc-err" role="alert"></p>
+      <p class="zc-fine">We use your details only to answer this enquiry. Messages may be read by the Z-Link team.</p>
+    </form>
+    <div class="zc-log" hidden></div>
+  </div>
+  <div class="zc-chips" hidden>
+    <button type="button" data-q="What services do you offer?">Our services</button>
+    <button type="button" data-q="Which areas do you cover?">Areas we cover</button>
+    <button type="button" data-q="I would like a quotation for my project.">Get a quote</button>
+    <button type="button" data-human>Talk to a person</button>
+  </div>
+  <form class="zc-send" hidden>
+    <input name="m" maxlength="800" placeholder="Type your question..." aria-label="Type your message" autocomplete="off">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z"/></svg></button>
+  </form>
+</section>
 <div class="fab">
+  <button class="zc-launch" type="button" aria-label="Chat with Z-Link" aria-controls="zc" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="3" stroke-linecap="round"/></svg><span class="zc-badge" hidden>1</span></button>
   <a class="wa" href="https://wa.me/971559495833?text=Hello%20Z-Link%2C%20I%20have%20an%20enquiry" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
   <button class="top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 </div>
@@ -950,6 +1033,62 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     var y=(t-.5)*-60,rot=(it.left?4:-4)*k;
     it.el.style.transform='translate3d(calc(-50% + '+(cx-vw/2)+'px),calc(-50% + '+y+'px),0) scale('+sc+') rotate('+rot+'deg)'})})}
   addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
+})();
+</script>
+<script>
+(function(){
+  var API='https://wismzgbcgyoysrgziljg.supabase.co/functions/v1/zl-web-chat', WA='971559495833';
+  var root=document.getElementById('zc'), launch=document.querySelector('.zc-launch'); if(!root||!launch) return;
+  var startF=root.querySelector('.zc-start'), log=root.querySelector('.zc-log'), sendF=root.querySelector('.zc-send'), chips=root.querySelector('.zc-chips'),
+      body=root.querySelector('.zc-body'), err=root.querySelector('.zc-err'), badge=launch.querySelector('.zc-badge');
+  var S={}, lastAgent=0, timer=null, busy=false, nameI=startF.querySelector('[name=name]');
+  function load(){try{S=JSON.parse(localStorage.getItem('zlchat')||'{}')}catch(e){S={}}}
+  function save(){try{localStorage.setItem('zlchat',JSON.stringify(S))}catch(e){}}
+  function api(b){return fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+  function add(cls,text,html){var d=document.createElement('div');d.className='zc-msg '+cls; if(html){d.innerHTML=html}else{d.textContent=text} log.appendChild(d); body.scrollTop=body.scrollHeight; return d}
+  function record(cls,text){(S.h=S.h||[]).push([cls,text]); if(S.h.length>60)S.h=S.h.slice(-60); save()}
+  function waLink(){var t='Hello Z-Link, I was chatting on your website (ref '+(S.ref||'')+'). My name is '+(S.name||'')+'.';return 'https://wa.me/'+WA+'?text='+encodeURIComponent(t)}
+  function handoffNote(){if(root.querySelector('.zc-msg.sys'))return; add('sys','', 'Your question is with the Z-Link team (ref <b>'+(S.ref||'')+'</b>). They will reply here or contact you directly.<br><a href="'+waLink()+'" target="_blank" rel="noopener">Continue on WhatsApp</a>');}
+  function chatMode(){startF.hidden=true; log.hidden=false; sendF.hidden=false; chips.hidden=false;}
+  function open(){root.hidden=false; launch.setAttribute('aria-expanded','true'); badge.hidden=true; var f=S.id?sendF.m:nameI; setTimeout(function(){f&&f.focus()},50); poll()}
+  function close(){root.hidden=true; launch.setAttribute('aria-expanded','false'); launch.focus()}
+  launch.addEventListener('click',function(){root.hidden?open():close()});
+  root.querySelector('.zc-x').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!root.hidden)close()});
+  function restore(){load(); if(!S.id)return; chatMode(); (S.h||[]).forEach(function(m){add(m[0],m[1])}); lastAgent=S.la||0; if(S.handoff)handoffNote(); startPolling()}
+  startF.addEventListener('submit',function(e){e.preventDefault(); err.textContent='';
+    var name=nameI.value.trim(), contact=startF.contact.value.trim();
+    if(name.length<2){err.textContent='Please enter your name.';nameI.focus();return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(contact)&&!/^\+?[\d\s()-]{7,20}$/.test(contact)){err.textContent='Please enter a valid mobile number or email.';startF.contact.focus();return}
+    var b=startF.querySelector('.zc-go'); b.disabled=true; b.textContent='Starting...';
+    api({action:'start',name:name,contact:contact,website:startF.website.value,page:location.pathname+location.hash}).then(function(j){
+      if(!j.ok){err.textContent=j.error||'Could not start the chat.';return}
+      S={id:j.chat_id,tk:j.token,ref:j.ref,name:name,h:[]}; save(); chatMode(); add('bot',j.reply); record('bot',j.reply); sendF.m.focus();
+    }).catch(function(){err.textContent='Connection problem. Please WhatsApp +971 55 949 5833.'}).finally(function(){b.disabled=false;b.textContent='Start chat'});
+  });
+  function send(text){ if(!text||busy||!S.id)return; busy=true; add('me',text); record('me',text);
+    var t=document.createElement('div'); t.className='zc-typing'; t.innerHTML='<i></i><i></i><i></i>'; log.appendChild(t); body.scrollTop=body.scrollHeight;
+    api({action:'send',chat_id:S.id,token:S.tk,message:text}).then(function(j){ t.remove();
+      if(!j.ok){add('bot',j.error||'Sorry, something went wrong.');return}
+      if(j.reply){add('bot',j.reply);record('bot',j.reply)}
+      if(j.handoff||j.status==='handoff'){S.handoff=true;save();handoffNote();startPolling()}
+    }).catch(function(){t.remove();add('bot','Connection problem. Please WhatsApp +971 55 949 5833.')}).finally(function(){busy=false});
+  }
+  sendF.addEventListener('submit',function(e){e.preventDefault(); var v=sendF.m.value.trim(); sendF.m.value=''; send(v)});
+  chips.addEventListener('click',function(e){var b=e.target.closest('button'); if(!b)return;
+    if(b.hasAttribute('data-human')){ if(S.handoff){handoffNote();return}
+      add('me','Talk to a person'); record('me','Talk to a person');
+      api({action:'handoff',chat_id:S.id,token:S.tk}).then(function(j){ if(j.ok){var m='I have passed your details to the Z-Link team. They will reply here or contact you directly.'; add('bot',m);record('bot',m); S.handoff=true;save();handoffNote();startPolling()} });
+      return }
+    send(b.getAttribute('data-q'));
+  });
+  function poll(){ if(!S.id||!S.handoff)return;
+    api({action:'poll',chat_id:S.id,token:S.tk,after:lastAgent}).then(function(j){ if(!j.ok)return;
+      (j.messages||[]).forEach(function(m){ add('agent',m.content); record('agent',m.content); lastAgent=Math.max(lastAgent,m.id); S.la=lastAgent; save(); if(root.hidden){badge.hidden=false} });
+    }).catch(function(){});
+  }
+  function startPolling(){ if(timer)return; timer=setInterval(function(){ if(document.visibilityState==='visible')poll() },20000) }
+  restore();
 })();
 </script>
 </body>
