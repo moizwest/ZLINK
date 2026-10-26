@@ -217,7 +217,7 @@ def cellset(cell, txt, size=10, bold=False, color=None, align=None):
     return cell
 
 
-def cell_lines(cell, lines, size=10, first_bold=True):
+def cell_lines(cell, lines, size=10, first_bold=True, all_bold=False):
     cell.text = ''
     for k, ln in enumerate(lines):
         p = cell.paragraphs[0] if k == 0 else cell.add_paragraph()
@@ -225,5 +225,23 @@ def cell_lines(cell, lines, size=10, first_bold=True):
         p.paragraph_format.space_before = Pt(0)
         r = p.add_run(ln)
         r.font.size = Pt(size); r.font.name = FONT
-        r.bold = first_bold and k == 0
+        r.bold = all_bold or (first_bold and k == 0)
     return cell
+
+
+def top_boxes(doc, client_lines, invoice_lines):
+    """Clause B1 — the two side-by-side top boxes of a tax invoice / proforma.
+
+    LEFT: the `TO,` block (client legal name, address, TRN, CONTACT, MOBILE,
+    EMAIL ID). RIGHT: the invoice block (INVOICE/PROFORMA INVOICE no., Date,
+    Contact: Moiz Husain, LPO No, Quote Ref, Project Location, Subject).
+
+    MD RULE 27 Oct 2026: EVERY line in BOTH boxes is BOLD. Permanent. Do not
+    build these boxes any other way.
+    """
+    t = doc.add_table(rows=1, cols=2)
+    t.style = 'Table Grid'
+    fix_grid(t, TOP_BOXES)
+    cell_lines(t.cell(0, 0), client_lines, all_bold=True)
+    cell_lines(t.cell(0, 1), invoice_lines, all_bold=True)
+    return t
