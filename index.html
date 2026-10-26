@@ -385,6 +385,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 .proj:hover .ph img:first-child{transform:scale(1.03)}
 .proj .ph{overflow:hidden}
 .form-note{font-size:.78rem;color:var(--muted);margin-top:8px}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 </style>
 </head>
 <body>
@@ -609,6 +610,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   </div>
   <form class="rfq reveal" id="rfq" novalidate>
     <label>Name<input name="name" required autocomplete="name"></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <label>Company<input name="company" autocomplete="organization"></label>
     <label>Mobile<input name="phone" type="tel" required autocomplete="tel" pattern="[+0-9 ]{8,}"></label>
     <label>Email<input name="email" type="email" autocomplete="email"></label>
@@ -617,7 +619,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     <label class="full">Project details<textarea name="details" required placeholder="Location, approximate area and what needs doing"></textarea></label>
     <div class="full"><button class="btn" type="submit">Send enquiry</button></div>
     <p class="form-note">We use your details only to reply to your enquiry. We do not share them.</p>
-    <div class="ok" hidden>Thank you. Your enquiry is ready to send. On the live site it goes straight to Z-Link and we aim to reply within 24 working hours.</div>
+    <div class="ok" hidden role="status"></div>
   </form>
 </div></section>
 </main>
@@ -626,12 +628,13 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   <div class="dh"><div style="display:flex;align-items:center;gap:12px"><img src="https://zlink.ae/assets/images/logo.png" alt=""><strong id="qd-title" style="font-family:var(--f-display);font-size:1.4rem">Request a quote</strong></div><button type="button" aria-label="Close" data-close>×</button></div>
   <form id="quick" novalidate>
     <label>Name<input name="name" required autocomplete="name"></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <label>Mobile<input name="phone" type="tel" required autocomplete="tel"></label>
     <label>Service<select name="service" class="svc-select"></select></label>
     <label>What needs doing?<textarea name="details" required></textarea></label>
     <button class="btn" type="submit">Send enquiry</button>
     <p class="form-note">We use your details only to reply to your enquiry. We do not share them.</p>
-    <div class="ok" hidden>Thank you. On the live site this reaches Z-Link instantly.</div>
+    <div class="ok" hidden role="status"></div>
   </form>
 </dialog>
 
@@ -728,7 +731,17 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     f.addEventListener('submit',function(e){
       e.preventDefault();
       if(!f.checkValidity()){f.reportValidity();return}
-      f.querySelector('.ok').hidden=false;f.querySelector('button[type=submit]').disabled=true;
+      var btn=f.querySelector('button[type=submit]'),ok=f.querySelector('.ok'),fd=new FormData(f);
+      btn.disabled=true;btn.textContent='Sending...';
+      var body={form:id,name:fd.get('name')||'',company:fd.get('company')||'',mobile:fd.get('phone')||'',email:fd.get('email')||'',
+        emirate:fd.get('emirate')||'',service:fd.get('service')||'',details:fd.get('details')||'',website:fd.get('website')||'',page:location.pathname};
+      fetch('https://wismzgbcgyoysrgziljg.supabase.co/functions/v1/zl-web-enquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+        .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
+        .then(function(x){
+          if(x.j&&x.j.ok){ok.textContent='Thank you. Your enquiry has reached Z-Link and we aim to reply within 24 working hours.';ok.hidden=false;f.reset();btn.textContent='Sent'}
+          else{ok.textContent=(x.j&&x.j.error)||'Sorry, it did not send. Please call or WhatsApp +971 55 949 5833.';ok.hidden=false;btn.disabled=false;btn.textContent='Send enquiry'}
+        })
+        .catch(function(){ok.textContent='Sorry, it did not send. Please call or WhatsApp +971 55 949 5833.';ok.hidden=false;btn.disabled=false;btn.textContent='Send enquiry'});
     });
   });
   document.querySelectorAll('[data-cert]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('cert-dialog').showModal()})});
