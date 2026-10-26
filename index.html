@@ -380,6 +380,82 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 .founder-creds b{display:block;font-family:var(--f-display);font-size:1.5rem;color:#fff}
 .founder-creds span{display:block;font-size:.82rem;color:#9fb6b9;margin-top:2px}
 @media (max-width:600px){.founder-creds{grid-template-columns:1fr}.fq-mark{font-size:5.5rem}}
+
+
+/* Google reviews */
+.reviews{background:var(--mist)}
+.rv-score{display:flex;align-items:center;gap:16px;justify-self:end}
+.rv-num{font-family:var(--f-display);font-weight:800;font-size:3.6rem;line-height:1;color:var(--ink)}
+.rv-score small{display:block;color:var(--muted);font-size:.88rem;margin-top:4px}
+.rv-stars{display:inline-flex;gap:2px}.rv-stars svg{width:16px;height:16px;fill:#F7B731}
+.rv-stars.big svg{width:22px;height:22px}
+.rv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.rv{margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 24px 20px;box-shadow:0 10px 30px rgba(7,28,32,.05);position:relative;transition:transform .3s,box-shadow .3s}
+.rv:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.rv::before{content:"\201C";position:absolute;right:18px;top:4px;font-family:Georgia,serif;font-size:4.5rem;line-height:1;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.5}
+.rv-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-right:34px}
+.rv-g{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rv blockquote{margin:14px 0 18px;color:var(--ink);font-size:.98rem;line-height:1.65}
+.rv figcaption{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--line)}
+.rv-av{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--orange),var(--teal))}
+.rv figcaption b{display:block;color:var(--ink)}
+.rv figcaption small{display:block;color:var(--muted);font-size:.82rem}
+.rv-foot{margin-top:26px;color:var(--muted);font-size:.88rem}
+.rv-foot a{color:var(--teal);font-weight:700;margin-left:6px}
+@media (max-width:980px){.rv-grid{grid-template-columns:1fr 1fr}.rv-score{justify-self:start}}
+@media (max-width:640px){.rv-grid{grid-template-columns:1fr}}
+/* UAE vision + landmarks */
+.uae{position:relative;color:#fff;overflow:hidden;isolation:isolate;background:var(--deep)}
+.uae-bg{position:absolute;inset:0;background-size:cover;background-position:center 40%;z-index:-2;transform:scale(1.05)}
+.uae::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,28,32,.55) 0%,rgba(7,28,32,.78) 45%,rgba(7,28,32,.96) 100%)}
+.uae::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--brand)}
+.uae .wrap{padding-block:120px 96px}
+.uae-intro{max-width:760px}
+.uae-intro h2{font-family:var(--f-display);font-size:clamp(2.2rem,4.6vw,3.8rem);line-height:1.04;margin:14px 0 0}
+.uae-intro h2 em{font-style:normal;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.uae-intro p{margin:22px 0 0;color:#d5e3e5;font-size:1.1rem;line-height:1.7;max-width:62ch}
+.vision-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:56px}
+.vision{position:relative;padding:26px 22px 24px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .3s,background .3s}
+.vision:hover{transform:translateY(-4px);background:rgba(255,255,255,.11)}
+.v-year{display:inline-block;font-family:var(--f-display);font-weight:800;font-size:2.4rem;line-height:1;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vision h3{margin:12px 0 6px;font-size:1.08rem}
+.vision p{margin:0;color:#c3d4d6;font-size:.94rem;line-height:1.6}
+@media (max-width:980px){.vision-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.vision-grid{grid-template-columns:1fr}.uae .wrap{padding-block:88px 72px}}
+.landmarks{background:var(--paper)}
+.lm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.lm{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(7,28,32,.06);transition:transform .35s,box-shadow .35s}
+.lm:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.lm-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--navy)}
+.lm-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.lm:hover .lm-media img{transform:scale(1.07)}
+.lm-body{padding:22px 22px 24px}
+.lm-body h3{margin:10px 0 10px;font-size:1.22rem}
+.lm-body ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.lm-body li{position:relative;padding-left:18px;color:var(--muted);font-size:.95rem;line-height:1.5}
+.lm-body li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.lm-body b{color:var(--ink)}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.chip.live{background:#e3f5f3;color:#0e6f6b}.chip.build{background:#fff1e8;color:#b8460f}.chip.plan{background:#fff7dd;color:#8a6200}
+.lm-rail{grid-column:span 2;flex-direction:row}
+.lm-rail .lm-media{flex:1.25;aspect-ratio:auto;min-height:300px;display:flex;flex-direction:column;justify-content:center;padding:18px;background:radial-gradient(120% 100% at 80% 0%,#12424a 0%,var(--deep) 70%)}
+.lm-rail .lm-body{flex:1}
+.lm-wide{grid-column:1/-1;flex-direction:row}.lm-wide .lm-media{flex:1.6;aspect-ratio:auto;min-height:280px}.lm-wide .lm-body{flex:1;align-self:center}
+.rail-map{width:100%;height:auto}
+.rail-map path:first-of-type{stroke-dasharray:900;stroke-dashoffset:900;animation:railDraw 2.6s ease forwards .3s}
+@keyframes railDraw{to{stroke-dashoffset:0}}
+.lm-legend{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:.75rem;color:#9fb6b9;margin-top:6px}
+.lm-legend .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.lm-legend .dot.on{background:#F2611D}.lm-legend .dot.soon{border:2px solid #F7B731}
+.lm-legend .dash{display:inline-block;width:18px;border-top:2px dashed #9fb6b9;margin-right:6px;vertical-align:3px}
+@media (max-width:980px){.lm-grid{grid-template-columns:1fr 1fr}.lm-rail{grid-column:1/-1}}
+@media (max-width:640px){.lm-wide{flex-direction:column}.lm-wide .lm-media{min-height:0;aspect-ratio:16/10}}
+@media (max-width:640px){.lm-grid{grid-template-columns:1fr}.lm-rail{flex-direction:column}.lm-rail .lm-media{min-height:0}}
+.lm-credits{margin-top:30px;font-size:.82rem;color:var(--muted)}
+.lm-credits summary{cursor:pointer;font-weight:600;color:var(--ink)}
+.lm-credits p{margin:10px 0 0;line-height:1.6;max-width:110ch}
+.lm-credits a{color:var(--teal)}
+@media (prefers-reduced-motion:reduce){.rail-map path:first-of-type{animation:none;stroke-dashoffset:0}.lm,.lm-media img,.vision{transition:none}}
 /* Floating Z-Link logo: starts centre, floats to the side, zooms, blinks */
 .has-wm{position:relative;overflow:hidden;isolation:isolate}
 .has-wm>.wrap{position:relative;z-index:1}
@@ -434,7 +510,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 <div id="mobile-menu" popover>
   <button class="close" popovertarget="mobile-menu" popovertargetaction="hide" aria-label="Close menu">×</button>
   <img src="assets/images/logo.png" alt="Z-Link" style="height:64px">
-  <nav aria-label="Mobile"><a href="#about">About</a><a href="#services">Services</a><a href="#training">Training</a><a href="#team">Our team</a><a href="#safety">Safety</a><a href="#sectors">Sectors</a><a href="#areas">Areas</a><a href="#projects">Projects</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+  <nav aria-label="Mobile"><a href="#about">About</a><a href="#services">Services</a><a href="#training">Training</a><a href="#team">Our team</a><a href="#safety">Safety</a><a href="#sectors">Sectors</a><a href="#areas">Areas</a><a href="#projects">Projects</a><a href="#uae">Our UAE</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
   <button class="btn" type="button" data-quote style="margin-top:28px;width:100%">Request a quote</button>
 </div>
 
@@ -591,6 +667,78 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   </div>
 </div></section>
 
+<section class="sec reviews" id="reviews" aria-labelledby="rv-h"><div class="wrap">
+  <div class="sec-head"><div><span class="kicker">What clients say</span><h2 id="rv-h">Trusted by the people we work for.</h2></div>
+    <div class="rv-score"><span class="rv-num">4.6</span><span><span class="rv-stars big" role="img" aria-label="Rated 4.6 out of 5"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><small>Average of 17 Google reviews</small></span></div></div>
+  <div class="rv-grid"><figure class="rv reveal"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><span class="rv-g">Google review</span></div><blockquote>I had a very good experience working with Z-Link Technical Services Contracting Co. LLC. They completed warehouse flooring, industrial shop floor, office renovation, and street interlock work for us. The team is honest, professional, and committed to delivering high-quality workmanship. The work was completed on time and met our expectations. I highly recommend them for any industrial or commercial project.</blockquote><figcaption><span class="rv-av" aria-hidden="true">SY</span><span><b>Sanjeet Y.</b><small>Warehouse flooring, shop floor, office and interlock · 3 months ago</small></span></figcaption></figure><figure class="rv reveal"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><span class="rv-g">Google review</span></div><blockquote>Excellent service. Great team. They knew their job perfectly. We extend our deepest gratitude for their efforts and dedication, their meticulous attention to detail, and their unwavering commitment to completing their assigned tasks with utmost integrity and honesty.</blockquote><figcaption><span class="rv-av" aria-hidden="true">AT</span><span><b>Ali T.</b><small>2 years ago</small></span></figcaption></figure><figure class="rv reveal"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><span class="rv-g">Google review</span></div><blockquote>Very professional, great with communication, showed up on time and did exactly what they promised! Would highly recommend!</blockquote><figcaption><span class="rv-av" aria-hidden="true">HB</span><span><b>Huzaifa B.</b><small>Sharjah, Industrial Area 15 · 2 years ago</small></span></figcaption></figure><figure class="rv reveal"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><span class="rv-g">Google review</span></div><blockquote>The process with the company was amazing, they did a great job with getting me a quote right away with different options and then when install time was here the team was respectful and did an amazing job with our floor. Highly recommend!</blockquote><figcaption><span class="rv-av" aria-hidden="true">QN</span><span><b>Quaizar N.</b><small>Floor, Al Quoz · 2 years ago</small></span></figcaption></figure><figure class="rv reveal"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><span class="rv-g">Google review</span></div><blockquote>They came on time and finished work also very quickly and professionally. Very knowledgeable staff and polite. Work done was also of great quality and finishing.</blockquote><figcaption><span class="rv-av" aria-hidden="true">TN</span><span><b>T N</b><small>Balcony works · 2 years ago</small></span></figcaption></figure><figure class="rv reveal"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg></span><span class="rv-g">Google review</span></div><blockquote>Impressed with the service. Professional and dedicated team. Highly recommended.</blockquote><figcaption><span class="rv-av" aria-hidden="true">DD</span><span><b>Darwin D.</b><small>2 years ago</small></span></figcaption></figure></div>
+  <p class="rv-foot">Reviews are quoted from Z-Link's public Google Business Profile; reviewer surnames are shortened. <a href="https://www.google.com/maps/place/Z-Link+Technical+Services+Contracting+Co+LLC/@25.18498,55.2796816,17z/data=!4m8!3m7!1s0x3e5f696270102093:0x3590fbf9e1ca3ab6!8m2!3d25.18498!4d55.2796816!9m1!1b1!16s%2Fg%2F11y3101661" target="_blank" rel="noopener">Read all 17 reviews on Google</a></p>
+</div></section>
+
+<section class="uae" id="uae" aria-labelledby="uae-h">
+  <div class="uae-bg" style="background-image:url('https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Dubai_skyline_unsplash.jpg/1920px-Dubai_skyline_unsplash.jpg')" role="img" aria-label="Dubai skyline with Burj Khalifa"></div>
+  <div class="wrap">
+    <div class="uae-intro reveal">
+      <span class="kicker">Our country. Our city.</span>
+      <h2 id="uae-h">Proud to build in a nation that <em>builds the future.</em></h2>
+      <p>Under the leadership of His Highness Sheikh Mohamed bin Zayed Al Nahyan, President of the UAE, and His Highness Sheikh Mohammed bin Rashid Al Maktoum, Vice President, Prime Minister and Ruler of Dubai, the UAE keeps investing in the places where people live, work and grow. For a contractor, there is no more inspiring place to work.</p>
+    </div>
+    <div class="vision-grid">
+      <article class="vision reveal"><span class="v-year">2071</span><h3>UAE Centennial 2071</h3><p>A national plan, launched in 2017, for the UAE to become the best country in the world by its centennial.</p></article>
+      <article class="vision reveal"><span class="v-year">2031</span><h3>We the UAE 2031</h3><p>A decade of growth targets, including a GDP of AED 3 trillion and non-oil exports of AED 800 billion.</p></article>
+      <article class="vision reveal"><span class="v-year">D33</span><h3>Dubai Economic Agenda</h3><p>Double the size of Dubai's economy by 2033 and rank among the world's top three global cities.</p></article>
+      <article class="vision reveal"><span class="v-year">2040</span><h3>Dubai 2040 Urban Master Plan</h3><p>Twice the green and recreational space, public beaches up 400%, and 60% of the emirate kept as nature reserves and rural areas.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec landmarks" id="landmarks" aria-labelledby="lm-h"><div class="wrap">
+  <div class="sec-head"><div><span class="kicker">Building the nation</span><h2 id="lm-h">Landmark projects shaping the UAE.</h2></div><p>From national rail to new islands, these projects show the scale of what the UAE is building. Every floor we coat and every roof we seal is a small part of the same story.</p></div>
+  <div class="lm-grid">
+    <article class="lm lm-rail reveal">
+      <div class="lm-media lm-map"><svg class="rail-map" viewBox="0 0 640 300" role="img" aria-label="Schematic of Etihad Rail passenger stations: open stations Mohamed Bin Zayed City, Al Yalayis Dubai, Al Dhaid and Fujairah; upcoming Al Dhafra stations and University City Sharjah">
+  <defs><linearGradient id="rl" x1="0" x2="1"><stop offset="0" stop-color="#F7B731"/><stop offset=".5" stop-color="#F2611D"/><stop offset="1" stop-color="#1C9C98"/></linearGradient></defs>
+  <path d="M40 170 L120 170 L200 160 L300 130 L390 100 L455 90 L520 80 L600 70" fill="none" stroke="url(#rl)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M200 160 L215 215 L230 255" fill="none" stroke="#F7B731" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>
+  <path d="M300 130 L360 190 L430 225" fill="none" stroke="#9fb6b9" stroke-width="3" stroke-dasharray="7 7"/>
+  <g font-family="Barlow, sans-serif" font-size="12" fill="#cfe0e2">
+    <circle cx="40" cy="170" r="6" fill="#0B2A30" stroke="#F7B731" stroke-width="3"/><text x="28" y="196">Al Sila</text>
+    <circle cx="120" cy="170" r="6" fill="#0B2A30" stroke="#F7B731" stroke-width="3"/><text x="96" y="152">Al Dhannah</text>
+    <circle cx="200" cy="160" r="6" fill="#0B2A30" stroke="#F7B731" stroke-width="3"/><text x="176" y="142">Al Mirfa</text>
+    <circle cx="215" cy="215" r="6" fill="#0B2A30" stroke="#F7B731" stroke-width="3"/><text x="226" y="219">Madinat Zayed</text>
+    <circle cx="230" cy="255" r="6" fill="#0B2A30" stroke="#F7B731" stroke-width="3"/><text x="242" y="259">Liwa</text>
+    <circle cx="300" cy="130" r="9" fill="#F2611D"/><text x="250" y="112" fill="#fff" font-weight="700">Abu Dhabi</text><text x="246" y="126" font-size="10">MBZ City</text>
+    <circle cx="390" cy="100" r="9" fill="#F2611D"/><text x="362" y="80" fill="#fff" font-weight="700">Dubai</text><text x="400" y="122" font-size="10">Al Yalayis</text>
+    <circle cx="455" cy="90" r="6" fill="#0B2A30" stroke="#F7B731" stroke-width="3"/><text x="430" y="64" font-size="10">University City</text>
+    <circle cx="520" cy="80" r="9" fill="#F2611D"/><text x="500" y="110" fill="#fff" font-weight="700">Al Dhaid</text>
+    <circle cx="600" cy="70" r="9" fill="#1C9C98"/><text x="560" y="50" fill="#fff" font-weight="700">Fujairah</text>
+    <text x="440" y="246" font-size="11" fill="#9fb6b9">To Oman: Hafeet Rail</text>
+  </g>
+</svg><span class="lm-legend"><i class="dot on"></i>Open now <i class="dot soon"></i>Opening 2026–27 <i class="dash"></i>Planned link</span></div>
+      <div class="lm-body"><span class="chip live">Now running</span><h3>Etihad Rail passenger service</h3>
+        <ul><li>Passenger trains linking Abu Dhabi, Dubai, Al Dhaid and Fujairah since <b>30 September 2026</b></li><li>Up to <b>200 km/h</b> on the <b>900 km</b> national network</li><li>Abu Dhabi to Fujairah in about <b>1 hour 45 minutes</b></li><li>Al Dhafra stations from 30 Nov and 30 Dec 2026; University City, Sharjah on 30 Mar 2027</li></ul></div>
+    </article>
+    <article class="lm reveal"><div class="lm-media"><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Dubai-World_Central_-_Al_Maktoum_International_Airport.jpg" alt="Al Maktoum International Airport, Dubai World Central" loading="lazy"></div>
+      <div class="lm-body"><span class="chip build">Under construction</span><h3>Al Maktoum International Airport</h3>
+        <ul><li><b>AED 128 billion</b> new passenger terminal</li><li>Capacity of up to <b>260 million</b> passengers a year</li><li><b>400</b> aircraft gates and <b>5</b> parallel runways</li></ul></div></article>
+    <article class="lm reveal"><div class="lm-media"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Palm_Deira_Access_Bridge_Under_Construction.jpg/1280px-Palm_Deira_Access_Bridge_Under_Construction.jpg" alt="Dubai Islands access bridge during construction" loading="lazy"></div>
+      <div class="lm-body"><span class="chip build">Developing</span><h3>Dubai Islands</h3>
+        <ul><li><b>5</b> islands covering <b>17 km²</b> off Deira</li><li>More than <b>20 km</b> of beaches and <b>80+</b> hotels and resorts planned</li><li>New 3 km shoreline upgrade due by end of 2027</li></ul></div></article>
+    <article class="lm reveal"><div class="lm-media"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/5034_entering_World_Trade_Centre_Station%2C_Dubai_Metro_20240426.jpg/1280px-5034_entering_World_Trade_Centre_Station%2C_Dubai_Metro_20240426.jpg" alt="Dubai Metro train arriving at World Trade Centre station" loading="lazy"></div>
+      <div class="lm-body"><span class="chip build">Under construction</span><h3>Dubai Metro Blue Line</h3>
+        <ul><li><b>30 km</b> line with <b>14</b> stations</li><li>Home to the Emaar station, set to be the world's highest metro station at <b>74 m</b></li><li>Opening target: <b>9 September 2029</b></li></ul></div></article>
+    <article class="lm reveal"><div class="lm-media"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Zayed_national_Museum_front_entrance_-_23_may_2026.jpg/1280px-Zayed_national_Museum_front_entrance_-_23_may_2026.jpg" alt="Entrance of Zayed National Museum, Saadiyat Island" loading="lazy"></div>
+      <div class="lm-body"><span class="chip live">Now open</span><h3>Saadiyat Cultural District</h3>
+        <ul><li>Zayed National Museum, honouring the UAE's Founding Father, is now open</li><li>Guggenheim Abu Dhabi opens on <b>11 December 2026</b></li></ul></div></article>
+    <article class="lm lm-wide reveal"><div class="lm-media"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Hatta_Dam_View.jpg/1280px-Hatta_Dam_View.jpg" alt="Hatta Dam among the Hajar Mountains, Dubai" loading="lazy"></div>
+      <div class="lm-body"><span class="chip plan">Dubai 2040</span><h3>Greener, more liveable Dubai</h3>
+        <ul><li>Green and recreational spaces to double</li><li>Public beach length to grow by <b>400%</b></li><li>60% of the emirate kept as nature reserves and rural areas</li></ul></div></article>
+  </div>
+  <details class="lm-credits"><summary>Sources and photo credits</summary>
+    <p>Figures are taken from official announcements and verified reporting: UAE Cabinet, Dubai Media Office, Dubai Government (dubai.ae), Dubai Aviation Engineering Projects, RTA, Nakheel, Etihad Rail, Abu Dhabi Media Office, Railway Gazette, Gulf News and Khaleej Times. Checked October 2026; dates for projects under construction are official targets.</p>
+    <p>Photos from Wikimedia Commons: Dubai skyline, Robert Bock (CC0); Al Maktoum International Airport, Marlin Le (CC0); Dubai Islands bridge, Jad Krimeed (<a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener" target="_blank">CC BY-SA 4.0</a>); Dubai Metro, Tim Wu (<a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener" target="_blank">CC BY-SA 4.0</a>); Zayed National Museum, Blahajsdm2025 (CC0); Hatta Dam, Srivath (<a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener" target="_blank">CC BY-SA 4.0</a>). Etihad Rail map is a Z-Link schematic, not to scale.</p>
+  </details>
+</div></section>
+
 <section class="sec" id="process"><div class="wrap">
   <div class="sec-head"><div><span class="kicker">How we work</span><h2>Survey. Quote. Build. Hand over.</h2></div><p>Four clear steps, with your facilities team informed at each one.</p></div>
   <div class="steps">
@@ -610,7 +758,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     <p class="founder-lead">I believe every project is a chance to make a positive difference. Behind every floor, roof and facade we work on are people who work, live and depend on it every day. We treat their spaces with the same care we would give our own, we keep growing our team's skills, and we keep our word. That is how a company earns its place in the community it serves.</p>
     <div class="founder-sign">
       <span class="sig" aria-hidden="true">Moiz Husain</span>
-      <p class="who">MOIZ HUSAIN<span>Managing Director, Z-Link Technical Services Contracting Co. LLC</span></p>
+      <p class="who"><span>Managing Director, Z-Link Technical Services Contracting Co. LLC</span></p>
     </div>
     <ul class="founder-creds">
       <li><b>15+</b><span>Years in UAE contracting</span></li>
@@ -678,7 +826,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   <div class="wrap top">
     <div><img class="fl" src="assets/images/logo.png" alt="Z-Link"><p>Z-Link Technical Services Contracting Co. LLC. Eight technical trades, our own crews, one contract, across the UAE.</p></div>
     <div><h4>Services</h4><ul><li><a href="#services">Waterproofing</a></li><li><a href="#services">Epoxy flooring</a></li><li><a href="#services">Industrial coatings</a></li><li><a href="#services">Turnkey fit-out</a></li></ul></div>
-    <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#safety">Safety</a></li><li><a href="#areas">Areas</a></li><li><a href="#projects">Projects</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#safety">Safety</a></li><li><a href="#areas">Areas</a></li><li><a href="#projects">Projects</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#uae">Our UAE</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="tel:+971559495833">+971 55 949 5833</a></li><li><a href="tel:+97143861940">+971 4 386 1940</a></li><li><a href="mailto:moiz@zlink.ae">moiz@zlink.ae</a></li><li>Office 201, Bay Square, Business Bay, Dubai, UAE</li></ul></div>
   </div>
   <div class="bar"><div class="wrap"><span>© <span id="yr">2026</span> Z-Link Technical Services Contracting Co. LLC · Dubai trade licence 1245333</span><span>Stock photography: Unsplash</span></div></div>
@@ -786,7 +934,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 </script>
 <script>
 (function(){
-  var LEFT=['contact','faq'];var ids=['about','services','training','people','team','sectors','areas','projects','process','faq','contact'],items=[];
+  var LEFT=['contact','faq'];var ids=['about','services','training','people','team','sectors','areas','projects','reviews','landmarks','process','faq','contact'],items=[];
   ids.forEach(function(id,n){var sec=document.getElementById(id);if(!sec)return;sec.classList.add('has-wm');var w=document.createElement('div');w.className='wm';w.setAttribute('aria-hidden','true');w.appendChild(document.createElement('i'));sec.insertBefore(w,sec.firstChild);items.push({sec:sec,el:w,on:false,left:LEFT.indexOf(id)>-1})});
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   var io=new IntersectionObserver(function(es){es.forEach(function(e){items.forEach(function(it){if(it.sec===e.target)it.on=e.isIntersecting})});tick()},{rootMargin:'200px 0px'});
