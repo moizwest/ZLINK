@@ -15,6 +15,7 @@ Every Z-Link document builder imports this. Format changes are made here once.
 from docx import Document
 from docx.shared import Pt, Cm, Mm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_ALIGN_VERTICAL
 from docx.oxml.ns import qn, nsmap
 from docx.oxml import OxmlElement, parse_xml
 
@@ -252,3 +253,35 @@ def top_boxes(doc, client_lines, invoice_lines):
     cell_lines(t.cell(0, 0), client_lines, all_bold=True)
     cell_lines(t.cell(0, 1), invoice_lines, all_bold=True)
     return t
+
+
+def align_items(table):
+    """Clauses B3/B4 — alignment of the line-item table data (MD rule 27 Oct 2026).
+
+    Every data row from the first line item down to NET TOTAL:
+      * UNIT, QTY and RATE values: horizontally CENTRED, vertically MIDDLE.
+      * TOTAL AMOUNT values: RIGHT-aligned, vertically MIDDLE.
+      * SR NO: centred, middle.  DESCRIPTION: left, middle.
+    The header row stays centred. Call after fix_grid() on the item table.
+    Permanent — do not lay out the item table any other way.
+    """
+    C, R = WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.RIGHT
+    col_align = {0: C, 2: C, 3: C, 4: C, 5: R}
+    for row in table.rows:
+        for cell in row.cells:
+            cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+        if row is table.rows[0]:
+            continue
+        seen = set()
+        for i, cell in enumerate(row.cells):
+            if id(cell._tc) in seen:
+                continue
+            seen.add(id(cell._tc))
+            txt = cell.text.strip().upper()
+            if i == 4 and txt in ('GROSS TOTAL', 'VAT @ 5%', 'NET TOTAL'):
+                continue            # totals labels stay right-aligned (B4)
+            if txt.startswith('TOTAL IN WORDS'):
+                continue
+            if i in col_align:
+                for p in cell.paragraphs:
+                    p.alignment = col_align[i]

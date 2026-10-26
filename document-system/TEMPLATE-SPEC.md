@@ -32,7 +32,7 @@ Modelled on MW/10/1228. Applies to tax invoices and proforma invoices.
 |---|---|---|
 | B1 | **Two top boxes** | Side by side. **LEFT** the `TO,` block: client legal name, full address, client TRN, then CONTACT / MOBILE / EMAIL ID. **RIGHT** the invoice block: INVOICE (or PROFORMA INVOICE) number, Date, Contact: Moiz Husain, LPO No, Quote Ref, Project Location, Subject. **Every line in both boxes is set in BOLD**, and **one blank line separates the client TRN line from the CONTACT line** in the left box (MD rules, 27 Oct 2026) — use `top_boxes()` in `zlink_doc.py`, which applies both. |
 | B2 | **Title** | Centred, bold, underlined: `TAX INVOICE` or `PROFORMA INVOICE`. |
-| B3 | **Line-item table** | Columns `SR NO \| DESCRIPTION \| UNIT \| QTY \| RATE \| TOTAL AMOUNT`. |
+| B3 | **Line-item table** | Columns `SR NO \| DESCRIPTION \| UNIT \| QTY \| RATE \| TOTAL AMOUNT`. **Data alignment (MD rule, 27 Oct 2026):** every data cell from the first line item down to NET TOTAL is **vertically middle**; UNIT, QTY and RATE values are **horizontally centred**; TOTAL AMOUNT values are **right-aligned**. Apply with `align_items()` in `zlink_doc.py` after `fix_grid()`. |
 | B4 | **Totals rows** | `GROSS TOTAL`, `VAT @ 5%`, `NET TOTAL`. Each label sits in the **RATE column alone, right-aligned**, with SR NO + DESCRIPTION + UNIT + QTY merged into one blank cell, and the figure in TOTAL AMOUNT. Never spread across several columns or the full row width. The RATE column is **at least 30 mm** so "GROSS TOTAL" sits on one line. |
 | B5 | **Total in Words** | `U.A.E. DIRHAMS <amount> ONLY`. Add `AND FILS nn/100` before `ONLY` when there are fils. |
 | B6 | **Payment Terms** | One line, **bold and underlined**. |
@@ -133,7 +133,7 @@ section A is an equally mandatory, separate standard.
 - [ ] A4 strapline artwork at 64% width, centred, repeating
 - [ ] A5 footer reference line with Page X of Y
 - [ ] A6 no solid fills anywhere between the margins
-- [ ] B1–B8 every body clause for invoices and proformas (B1: both top boxes fully bold; blank line between TRN and CONTACT)
+- [ ] B1–B8 every body clause for invoices and proformas (B1: both top boxes fully bold; blank line between TRN and CONTACT. B3: UNIT/QTY/RATE centred-middle, TOTAL AMOUNT right-middle through NET TOTAL)
 - [ ] C output set complete (DOCX + PDF + JPEG for invoices and proformas)
 - [ ] D reference number in the correct series, next in sequence
 - [ ] Arithmetic re-computed independently; 5% VAT shown separately
