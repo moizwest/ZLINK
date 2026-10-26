@@ -773,7 +773,7 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
     var t=(vh-r.top)/(vh+r.height);t=Math.max(0,Math.min(1,t));
     var k=ease(Math.max(0,Math.min(1,(t-.15)/.5)));
     var sc=mob?1:1+k*.12;
-    var W=mob?vw*.88:Math.min(vw*.52,960,(r.height-60)/0.9/sc);it.el.style.width=W+'px';
+    var W=mob?vw*.88:Math.min(vw*.52,960,(r.height-140)/0.9/sc);it.el.style.width=W+'px';
     var half=W*sc/2,cx=vw*.5+k*(vw*.62-vw*.5);cx=Math.min(cx,vw-24-half);if(mob)cx=vw/2;
     var y=(t-.5)*-60,rot=k*-4;
     it.el.style.transform='translate3d(calc(-50% + '+(cx-vw/2)+'px),calc(-50% + '+y+'px),0) scale('+sc+') rotate('+rot+'deg)'})})}
