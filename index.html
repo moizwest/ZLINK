@@ -365,6 +365,13 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 .fab .top.show{opacity:1;pointer-events:auto}
 .fab .top svg{width:22px;height:22px}
 
+
+/* Big Z-Link logo watermark, drifts on scroll */
+.has-wm{position:relative;overflow:hidden;isolation:isolate}
+.has-wm>.wrap{position:relative;z-index:1}
+.wm{position:absolute;top:50%;right:-7vw;width:clamp(320px,40vw,700px);aspect-ratio:480/432;background:url(assets/images/logo.png) center/contain no-repeat;opacity:.075;pointer-events:none;z-index:0;transform:translate3d(0,-50%,0);will-change:transform}
+.wm.l{right:auto;left:-7vw}
+@media (max-width:900px){.wm{width:78vw;right:-24vw;opacity:.05}.wm.l{left:-24vw}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .slides img:nth-child(n+2){display:none}
@@ -748,6 +755,18 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
   });
   document.querySelectorAll('[data-cert]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('cert-dialog').showModal()})});
   document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+<script>
+(function(){
+  var ids=['about','services','training','sectors','areas'],items=[];
+  ids.forEach(function(id){var sec=document.getElementById(id);if(!sec)return;sec.classList.add('has-wm');var w=document.createElement('div');w.className='wm';w.setAttribute('aria-hidden','true');sec.insertBefore(w,sec.firstChild);items.push({sec:sec,el:w,on:false})});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){items.forEach(function(it){if(it.sec===e.target)it.on=e.isIntersecting})});tick()},{rootMargin:'200px 0px'});
+  items.forEach(function(it){io.observe(it.sec)});
+  var q=false;
+  function tick(){if(q)return;q=true;requestAnimationFrame(function(){q=false;var vh=innerHeight;items.forEach(function(it){if(!it.on)return;var r=it.sec.getBoundingClientRect();var p=(r.top+r.height/2-vh/2)/vh;p=Math.max(-1.2,Math.min(1.2,p));it.el.style.transform='translate3d('+(p*-40)+'px,calc(-50% + '+(p*160)+'px),0) rotate('+(p*-14)+'deg)'})})}
+  addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
 })();
 </script>
 </body>
