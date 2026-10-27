@@ -34,13 +34,37 @@ Modelled on MW/10/1228. Applies to tax invoices and proforma invoices.
 | B2 | **Title** | Centred, bold, underlined: `TAX INVOICE` or `PROFORMA INVOICE`. |
 | B3 | **Line-item table** | Columns `SR NO \| DESCRIPTION \| UNIT \| QTY \| RATE \| TOTAL AMOUNT`. **Data alignment (MD rule, 27 Oct 2026):** every data cell from the first line item down to NET TOTAL is **vertically middle**; UNIT, QTY and RATE values are **horizontally centred**; TOTAL AMOUNT values are **right-aligned**. Apply with `align_items()` in `zlink_doc.py` after `fix_grid()`. |
 | B4 | **Totals rows** | `GROSS TOTAL`, `VAT @ 5%`, `NET TOTAL`. Each label sits in the **RATE column alone, right-aligned**, with SR NO + DESCRIPTION + UNIT + QTY merged into one blank cell, and the figure in TOTAL AMOUNT. Never spread across several columns or the full row width. The RATE column is **at least 30 mm** so "GROSS TOTAL" sits on one line. |
-| B5 | **Total in Words** | `U.A.E. DIRHAMS <amount> ONLY`. Add `AND FILS nn/100` before `ONLY` when there are fils. |
+| B5 | **Total in Words** | `Total in Words:  U.A.E. DIRHAMS <amount> ONLY`. Add `AND FILS nn/100` before `ONLY` when there are fils. **Placement (MD rule, 28 Oct 2026, measured on MW/10/1228): the LAST ROW of the line-item table, merged across all six columns, bold, directly beneath NET TOTAL** — never a free paragraph below the table. Use `words_row()` in `zlink_doc.py`. |
 | B6 | **Payment Terms** | One line, **bold and underlined**. |
 | B7 | **Bank block** | Table headed `RAK BANK` in **red** followed by `DETAILS` in black. Rows: ACCOUNT NAME / ACCOUNT NUMBER / IBAN / SWIFT CODE / BRANCH. Roughly 120 mm wide, left aligned — not full width. |
 | B8 | **Signatory** | `AUTHORIZED SIGNATORY`, then about **33 mm of clear space** for the company stamp and signature, then `FOR: Z-LINK TECHNICAL SERVICES CONTRACTING CO LLC`. The MD applies stamp and signature after formatting. |
 
 Bank account values are **not** stored in this public repository. They are held
 in Claude's memory and in the private office system.
+
+---
+
+## W. Work completion report (WCR) body — 7 clauses
+
+Approved by the MD 28 Oct 2026, modelled on ZL/WCR/10359 after the
+duplicate-data review. Applies to every work completion report / certificate.
+Numbering: `ZL/WCR/<quotation number>` (add `-<unit>` where one quotation covers
+several units, e.g. `ZL/WCR/10353-312B`).
+
+| # | Clause | Specification |
+|---|---|---|
+| W1 | **Title** | Centred, bold, underlined, navy: `WORK COMPLETION REPORT`. |
+| W2 | **Particulars table** (4 cols, 40/55/40/55 mm) | Completion Report No. / Purchase Order No.; Date of Completion / PO Date; Quotation Reference / Job or Work Order No.; Tax Invoice No. / Client TRN. **No "Report Date" row** — the completion date is the report date. Each fact appears here once and is **not repeated in the body text**. |
+| W3 | **Client table** (2 cols, 40/150 mm) | Client; Client Address; Client Contact (name - mobile - email on one line); Project; Location. The TRN lives in W2, not here. |
+| W4 | **1. Declaration of Completion** | One short paragraph: company legal name confirms that *the works described below* were completed in full on the completion date in accordance with *the quotation and Purchase Order referenced above*, and handed over in working order; then the warranty sentence (workmanship period from completion; materials on manufacturer's warranty). **Does not restate the scope** and **does not re-cite** the PO, quotation or invoice numbers. The warranty is stated here and nowhere else. |
+| W5 | **2. Summary of Works Completed** | Table `SR \| DESCRIPTION OF WORKS COMPLETED \| STATUS` (12/148/30 mm), one row per work package, status `Completed`. Sizes, brands and references are given once per row, not repeated within it. **No warranty row.** Beneath the table one line: `Contract value: AED x,xxx.xx excluding VAT (VAT AED xxx.xx \| Total AED x,xxx.xx).` — no PO or invoice number in that line. |
+| W6 | **3. Photographic Record** | Starts on a new page. Two-column grid (95/95 mm), every photo at a fixed **64 mm height** so rows stay level, 9 pt caption beneath. Captions name what the photo shows in a few words; they do not re-read the works table. |
+| W7 | **4. Contractor Signature / 5. Client Acceptance** | Section 4 starts on a new page and is the signature table only (Contractor / Name / Designation / Signature & Company Stamp / Date) — **no declaration sentence**, that is W4's job. Section 5 heading `CLIENT ACCEPTANCE - <CLIENT NAME>`, one line "The works described above have been inspected and are accepted as complete.", then Name / Designation / Date of Acceptance / Signature & Company Stamp. |
+
+**Duplicate-data rule (all documents on the letterhead):** a fact is stated
+once, in the place the format assigns it. Retained on purpose: party legal names
+in both the particulars and the signature blocks, and reference numbers in the
+particulars table. Everything else that repeats is cut before audit.
 
 ---
 
@@ -133,6 +157,8 @@ section A is an equally mandatory, separate standard.
 - [ ] A4 strapline artwork at 64% width, centred, repeating
 - [ ] A5 footer reference line with Page X of Y
 - [ ] A6 no solid fills anywhere between the margins
+- [ ] B5 Total in Words is the last merged row of the item table, not a paragraph
+- [ ] W1–W7 every body clause for work completion reports (no Report Date row, no scope or reference repetition in the declaration, no warranty row in the works table, signature section without a declaration sentence)
 - [ ] B1–B8 every body clause for invoices and proformas (B1: both top boxes fully bold; blank line between TRN and CONTACT. B3: UNIT/QTY/RATE centred-middle, TOTAL AMOUNT right-middle through NET TOTAL)
 - [ ] C output set complete (DOCX + PDF + JPEG for invoices and proformas)
 - [ ] D reference number in the correct series, next in sequence

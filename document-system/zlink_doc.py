@@ -285,3 +285,44 @@ def align_items(table):
             if i in col_align:
                 for p in cell.paragraphs:
                     p.alignment = col_align[i]
+
+
+def words_row(table, amount_words):
+    """Clause B5 — Total in Words as the LAST ROW of the line-item table
+    (MD rule 28 Oct 2026, measured on genuine invoice MW/10/1228).
+
+    The row is merged across all six columns, bold, black, directly beneath
+    NET TOTAL. Never place Total in Words as a paragraph below the table.
+    Call after the GROSS TOTAL / VAT / NET TOTAL rows and before align_items().
+    """
+    row = table.add_row()
+    c = row.cells[0]
+    for i in range(1, len(row.cells)):
+        c = c.merge(row.cells[i])
+    cellset(c, 'Total in Words:  ' + amount_words, 10, True)
+    return row
+
+
+def section_heading(doc, text):
+    """Clause A6 — navy bold heading with a thin navy rule beneath (no fill).
+    Used for the numbered sections of reports and work completion reports."""
+    p = para(doc, text, 11, True, color=NAVY, after=3)
+    p.paragraph_format.space_before = Pt(8)
+    pPr = p._p.get_or_add_pPr()
+    bd = OxmlElement('w:pBdr'); bt = OxmlElement('w:bottom')
+    for k, v in (('w:val', 'single'), ('w:sz', '6'), ('w:space', '1'), ('w:color', '1F3864')):
+        bt.set(qn(k), v)
+    bd.append(bt); pPr.append(bd)
+    return p
+
+
+def kv_table(doc, rows, widths_mm):
+    """Particulars / client tables for reports (clauses W2, W3, W7):
+    label cells bold, value cells plain, borders only."""
+    t = doc.add_table(rows=len(rows), cols=len(widths_mm))
+    t.style = 'Table Grid'
+    fix_grid(t, widths_mm)
+    for i, row in enumerate(rows):
+        for j, v in enumerate(row):
+            cellset(t.cell(i, j), v, 10, bold=(j % 2 == 0))
+    return t
