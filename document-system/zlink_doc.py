@@ -326,3 +326,14 @@ def kv_table(doc, rows, widths_mm):
         for j, v in enumerate(row):
             cellset(t.cell(i, j), v, 10, bold=(j % 2 == 0))
     return t
+
+
+def signatory_block(doc):
+    """Clause B8 — AUTHORIZED SIGNATORY, 25 mm clear space (four empty 10 pt
+    lines; MD rule 28 Oct 2026), then FOR: Z-LINK TECHNICAL SERVICES
+    CONTRACTING CO LLC. Permanent — do not widen the gap."""
+    para(doc, '', 6)
+    para(doc, 'AUTHORIZED SIGNATORY', 10, True)
+    for _ in range(4):
+        para(doc, '', 10)
+    para(doc, 'FOR: Z-LINK TECHNICAL SERVICES CONTRACTING CO LLC', 10, True)

@@ -37,7 +37,7 @@ Modelled on MW/10/1228. Applies to tax invoices and proforma invoices.
 | B5 | **Total in Words** | `Total in Words:  U.A.E. DIRHAMS <amount> ONLY`. Add `AND FILS nn/100` before `ONLY` when there are fils. **Placement (MD rule, 28 Oct 2026, measured on MW/10/1228): the LAST ROW of the line-item table, merged across all six columns, bold, directly beneath NET TOTAL** — never a free paragraph below the table. Use `words_row()` in `zlink_doc.py`. |
 | B6 | **Payment Terms** | One line, **bold and underlined**. |
 | B7 | **Bank block** | Table headed `RAK BANK` in **red** followed by `DETAILS` in black. Rows: ACCOUNT NAME / ACCOUNT NUMBER / IBAN / SWIFT CODE / BRANCH. Roughly 120 mm wide, left aligned — not full width. |
-| B8 | **Signatory** | `AUTHORIZED SIGNATORY`, then about **33 mm of clear space** for the company stamp and signature, then `FOR: Z-LINK TECHNICAL SERVICES CONTRACTING CO LLC`. The MD applies stamp and signature after formatting. |
+| B8 | **Signatory** | `AUTHORIZED SIGNATORY`, then **25 mm of clear space** (four empty 10 pt lines — MD rule 28 Oct 2026, superseding the earlier ~33 mm which the MD found too wide) for the company stamp and signature, then `FOR: Z-LINK TECHNICAL SERVICES CONTRACTING CO LLC`. The MD applies stamp and signature after formatting. Use `signatory_block()` in `zlink_doc.py`. |
 
 Bank account values are **not** stored in this public repository. They are held
 in Claude's memory and in the private office system.
@@ -158,6 +158,7 @@ section A is an equally mandatory, separate standard.
 - [ ] A5 footer reference line with Page X of Y
 - [ ] A6 no solid fills anywhere between the margins
 - [ ] B5 Total in Words is the last merged row of the item table, not a paragraph
+- [ ] B8 signatory clear space is 25 mm (four empty 10 pt lines), not more
 - [ ] W1–W7 every body clause for work completion reports (no Report Date row, no scope or reference repetition in the declaration, no warranty row in the works table, signature section without a declaration sentence)
 - [ ] B1–B8 every body clause for invoices and proformas (B1: both top boxes fully bold; blank line between TRN and CONTACT. B3: UNIT/QTY/RATE centred-middle, TOTAL AMOUNT right-middle through NET TOTAL)
 - [ ] C output set complete (DOCX + PDF + JPEG for invoices and proformas)
