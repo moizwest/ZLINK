@@ -6,7 +6,7 @@ Measured against genuine documents MW/10/1228 and ZL/PI/10356/01.
 Applies to **all** official Z-Link documents — tax invoice, proforma invoice,
 subcontract, undertaking, report, letter, work completion report.
 
-**Exception:** quotations keep the typeset navy letterhead as MW/09/10345 —
+**Exception:** quotations use their own typeset letterhead (section Q, `zlink_quote.py`) —
 no banner, no strapline, no watermark.
 
 ---
@@ -120,6 +120,28 @@ Two cells, **not merged**: `RAK BANK` in red plus ` DETAILS` in black in the
 left cell, the right cell empty.
 
 ---
+
+## Q. Quotation format — approved by the MD 29 Oct 2026 (module `zlink_quote.py`)
+
+Quotations are the exception to section A: no banner, no strapline, no watermark.
+Every quotation is built with `zlink_quote.new_quotation(ref)` and **starts with
+this letterhead**, measured off the MD's reference `artwork/quotation-header-reference.png`.
+Never typeset it by hand and never copy a letterhead from an older job script.
+
+| # | Element | Rule |
+|---|---|---|
+| Q1 | **Letterhead** (left-aligned) | L1 `Z-LINK TECHNICAL SERVICES CONTRACTING CO. LLC` Calibri Bold 17 pt blue #2E74B5 · L2 `OFFICE 201, BAY SQUARE, BUSINESS BAY, DUBAI, UNITED ARAB EMIRATES` Calibri Bold 12 pt black · L3 **TRN:** 104180458200003 (label bold, number regular) 11.5 pt · L4 red ☎ 055-9495833 \| green ✉ INFO@ZLINK.AE \| blue 🌐 WWW.ZLINK.AE, Calibri 12 pt · grey 3-D emboss rule (#A6A6A6) across the full text width. Exact line heights 20/15/14/15 pt. |
+| Q2 | **Title** | `QUOTATION`, Calibri Bold 12.5 pt blue #2E74B5, **right-aligned**, directly under the rule. |
+| Q3 | **Particulars** | Borderless two-column block (100/80 mm): left To / client legal name (bold) / address / Attn / Tel / Email; right Ref No. / Date / Your Ref. / Project / Subject / Validity. Labels bold. |
+| Q4 | **Price schedule** | Columns Item 12 · Description 92 · Unit 13 · Qty 13 · Rate 22 · Amount 28 mm. Header row blue #2E74B5 with white bold text, repeats on each page. Group rows light blue #DEEAF6 with blue bold text. Description = bold title line + specification. Unit/Qty centred, Rate/Amount right-aligned. Rows never split. |
+| Q5 | **Totals** | Sub Total (AED), VAT 5% (AED), Grand Total (AED): label right-aligned across Item–Rate, figure in Amount; Grand Total row shaded #DEEAF6. Then `Amount in words:` bold + italic words "(inclusive of 5% VAT)". |
+| Q6 | **Section headings** | Blue #2E74B5 bold 11 pt, kept with next: OPTIONAL ITEMS, BASIS OF QUOTATION (numbered), EXCLUSIONS (bullets), TERMS & CONDITIONS (bullets with bold key: Payment, Mobilisation/Delivery, Completion, Warranty, Pricing, Bank). Optional items table uses the Q4 header style. |
+| Q7 | **Closing** | Trust paragraph · Yours faithfully, · **For Z-LINK TECHNICAL SERVICES CONTRACTING CO. LLC** (blue) · 30 pt space for stamp/signature · **Moiz Husain** · Managing Director \| Mob: 055-9495833 \| moiz@zlink.ae. |
+| Q8 | **Page** | A4, 15 mm margins all sides, Calibri 9.5 pt body, footer `<ref> \| Page X of Y` 7.5 pt grey centred. |
+| Q9 | **Content rules** | Ref `MW/MM/NNNNN`; British English; 5% VAT separate; Monday–Saturday programme; 50/50 payment unless told otherwise; no wording that signals reduced quality; each fact stated once. |
+
+Audit (adds to section E): letterhead and title must match Q1–Q2 against the
+reference image when rendered — any difference is an automatic **FAIL**.
 
 ## C. Output set
 

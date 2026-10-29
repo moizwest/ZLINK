@@ -20,8 +20,10 @@ doc = Z.new_document('Tax Invoice MW/10/1229')
 Read `document-system/TEMPLATE-SPEC.md` and work through its section E audit
 checklist before giving any audit verdict.
 
-Quotations are the one exception: they keep the typeset navy letterhead as
-MW/09/10345 — no banner, no strapline, no watermark.
+Quotations are the one exception: no banner, no strapline, no watermark. Every
+quotation is built with `zlink_quote.new_quotation(ref)`, which places the
+MD-approved quotation letterhead (29 Oct 2026, section Q of TEMPLATE-SPEC.md,
+reference image `document-system/artwork/quotation-header-reference.png`).
 
 ## Format changes
 
