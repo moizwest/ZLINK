@@ -20,6 +20,7 @@ closing and signatory. A4, 15 mm margins, footer "<ref> | Page X of Y".
 
 Format is changed here once, never per document.
 """
+import os
 from docx import Document
 from docx.shared import Pt, Mm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -39,6 +40,7 @@ BODY_PT = 9.5
 MARGIN = 15.0          # mm, all sides
 USABLE = 210.0 - 2 * MARGIN   # 180 mm
 
+ART = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'artwork')
 COMPANY = 'Z-LINK TECHNICAL SERVICES CONTRACTING CO. LLC'
 ADDRESS = 'OFFICE 201, BAY SQUARE, BUSINESS BAY, DUBAI, UNITED ARAB EMIRATES'
 TRN = '104180458200003'
@@ -85,9 +87,11 @@ def quotation_letterhead(doc):
     p = doc.add_paragraph(); _spacing(p, line=14)
     _run(p, 'TRN: ', 11.5, True, BLACK); _run(p, TRN, 11.5, False, BLACK)
     p = doc.add_paragraph(); _spacing(p, line=15)
-    _run(p, '\u260E ', 11, False, RED); _run(p, PHONE + ' | ', 12)
-    _run(p, '\u2709 ', 11, False, GREEN); _run(p, EMAIL + ' | ', 12)
-    _run(p, '\U0001F310 ', 11, False, BLUE); _run(p, WEB, 12)
+    # Icons are embedded images (artwork/icon-*.png), never font characters:
+    # an emoji globe in Calibri shows as an empty box in Word on Windows (fixed 2 Nov 2026).
+    for icon, text in (('icon-phone.png', PHONE + ' | '), ('icon-email.png', EMAIL + ' | '), ('icon-web.png', WEB)):
+        p.add_run().add_picture(os.path.join(ART, icon), height=Pt(10))
+        _run(p, '\u2009' + text, 12)
     _bottom_rule(p)
     p = doc.add_paragraph(); _spacing(p, before=6, after=6)
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
