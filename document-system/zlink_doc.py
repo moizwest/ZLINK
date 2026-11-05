@@ -303,6 +303,46 @@ def words_row(table, amount_words):
     return row
 
 
+def advance_rows(table, advance_figure, balance_figure, advance_date):
+    """Clause B9 - ADVANCE PAYMENT RECEIVED / BALANCE PAYABLE (MD rule 5 Nov 2026).
+
+    Used on every tax invoice where an advance has already been received.
+    Call AFTER the GROSS TOTAL / VAT / NET TOTAL rows and after the Total in
+    Words row, then call align_items().
+
+    VAT is always charged on the FULL contract value. The advance is deducted
+    AFTER the VAT-inclusive NET TOTAL and is itself a VAT-INCLUSIVE figure.
+    Never deduct a VAT-exclusive advance from the subtotal and then apply 5%:
+    that under-declares output tax (UAE VAT Decree-Law 8/2017).
+
+    Both labels run right-aligned across SR NO + DESCRIPTION + UNIT + QTY +
+    RATE merged into one cell, with the figure in TOTAL AMOUNT. The BALANCE
+    PAYABLE figure is highlighted yellow.
+
+    COMPANION RULE - the invoice's top-right box must carry a separate
+    DATE OF SUPPLY line whenever the advance was received before the invoice
+    date. Executive Regulation Art. 59(1)(f) makes it mandatory where the two
+    differ, and without it the tax invoice is defective.
+    """
+    from docx.enum.text import WD_COLOR_INDEX
+
+    def wide(label, figure, highlight=False):
+        row = table.add_row()
+        c = row.cells[0]
+        for i in range(1, 5):
+            c = c.merge(row.cells[i])
+        cellset(c, label, 10, True, align=WD_ALIGN_PARAGRAPH.RIGHT)
+        cellset(row.cells[5], figure, 10, True, align=WD_ALIGN_PARAGRAPH.RIGHT)
+        if highlight:
+            for p in row.cells[5].paragraphs:
+                for r in p.runs:
+                    r.font.highlight_color = WD_COLOR_INDEX.YELLOW
+        return row
+
+    wide('ADVANCE PAYMENT RECEIVED ON ' + advance_date, advance_figure)
+    wide('BALANCE PAYABLE', balance_figure, highlight=True)
+
+
 def section_heading(doc, text):
     """Clause A6 — navy bold heading with a thin navy rule beneath (no fill).
     Used for the numbered sections of reports and work completion reports."""

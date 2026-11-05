@@ -39,6 +39,17 @@ Modelled on MW/10/1228. Applies to tax invoices and proforma invoices.
 | B7 | **Bank block** | Table headed `RAK BANK` in **red** followed by `DETAILS` in black. Rows: ACCOUNT NAME / ACCOUNT NUMBER / IBAN / SWIFT CODE / BRANCH. Roughly 120 mm wide, left aligned — not full width. |
 | B8 | **Signatory** | `AUTHORIZED SIGNATORY`, then **25 mm of clear space** (four empty 10 pt lines — MD rule 28 Oct 2026, superseding the earlier ~33 mm which the MD found too wide) for the company stamp and signature, then `FOR: Z-LINK TECHNICAL SERVICES CONTRACTING CO LLC`. The MD applies stamp and signature after formatting. Use `signatory_block()` in `zlink_doc.py`. |
 
+| B9 | **Advance payment rows** | **MD rule 5 Nov 2026.** Where an advance has already been received, the line-item table carries, after Total in Words: `ADVANCE PAYMENT RECEIVED ON <dd/mm/yyyy>` with the figure as a **negative**, then `BALANCE PAYABLE` with the figure **highlighted yellow**. Both labels run **right-aligned across SR NO + DESCRIPTION + UNIT + QTY + RATE merged into one cell**, figure in TOTAL AMOUNT. VAT is charged on the **full** contract value; the advance is deducted **after** the VAT-inclusive NET TOTAL and is itself **VAT-inclusive**. Never deduct a VAT-exclusive advance from the subtotal and then apply 5% - that under-declares output tax. Use `advance_rows()` in `zlink_doc.py`. |
+| B10 | **Date of supply** | **Mandatory conditional field, Exec. Reg. Art. 59(1)(f).** Where the date of supply differs from the date of issue - which is always the case when an advance was received earlier - the top-right box carries `DATE OF ISSUE:` **and** a separate `DATE OF SUPPLY:` line. Omitting it renders the tax invoice defective and puts the client's input tax recovery at risk. |
+
+**UAE VAT note on advances (Decree-Law 8/2017 Art. 25(7) and 67(1)).** Receipt of
+an advance is itself a date of supply for that amount, and a tax invoice is
+legally due **within 14 days of receiving it**, not at completion. Z-Link's
+standard is therefore: raise a tax invoice for every advance within 14 days of
+receipt, then a second invoice for the balance at completion, cross-referencing
+the advance invoice number and date. The B9 rows above are for the case where a
+single completion invoice is unavoidable.
+
 Bank account values are **not** stored in this public repository. They are held
 in Claude's memory and in the private office system.
 
