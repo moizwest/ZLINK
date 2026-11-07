@@ -229,7 +229,7 @@ def page(path, title, desc, h1, crumbs, body_html, schema):
   <div class="wrap top">
     <div><img class="fl" src="/assets/images/logo.png" alt="Z-Link" loading="lazy"><p>Z-Link Technical Services Contracting Co. LLC. Eight technical trades, our own crews, one contract, across the UAE.</p></div>
     <div><h4>Services</h4><ul>{svc_foot}</ul></div>
-    <div><h4>Areas</h4><ul><li><a href="/areas/dubai/">Dubai</a></li><li><a href="/areas/sharjah/">Sharjah</a></li><li><a href="/#areas">All areas</a></li><li><a href="/#projects">Projects</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+    <div><h4>Areas</h4><ul><li><a href="/areas/dubai/">Dubai</a></li><li><a href="/areas/sharjah/">Sharjah</a></li><li><a href="/#areas">All areas</a></li><li><a href="/projects/">Projects</a></li><li><a href="/guides/warehouse-epoxy-flooring/">Epoxy flooring guide</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="tel:{PHONE_M}">{PHONE_M_TXT}</a></li><li><a href="tel:{PHONE_L}">{PHONE_L_TXT}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li>{e(ADDRESS)}</li></ul></div>
   </div>
   <div class="bar"><div class="wrap"><span>© 2026 Z-Link Technical Services Contracting Co. LLC · Dubai trade licence 1245333</span><span>Stock photography: Unsplash</span></div></div>
@@ -312,7 +312,19 @@ def build_hub():
     body = f'''<section class="hero"><div class="wrap narrow"><span class="kicker">What we do</span>
 <h1>Eight technical trades. One contract.</h1>
 <p class="lead">Many contractors subcontract the technical packages. We keep them in-house, so you deal with one programme, one standard and one warranty contact.</p></div></section>
-<section class="block"><div class="wrap"><div class="svc-grid">{cards}</div></div></section>'''
+<section class="block"><div class="wrap"><div class="svc-grid">{cards}</div></div></section>
+<section class="block alt"><div class="wrap two-text"><div>
+  <h2>Why one contractor for all eight trades</h2>
+  <p>Z-Link started more than 15 years ago supplying labour to other contractors. Today we run our own skilled team from a workshop in Al Sajaa, Sharjah, and deliver complete technical packages for facilities managers, factories, property owners and main contractors.</p>
+  <p>The engineer who surveys your site is part of the team that builds it. That keeps prices honest, programmes realistic and quality consistent. When a job needs civil repairs before waterproofing, or grinding before an epoxy floor, the same programme covers every step and nobody waits on another contractor.</p>
+  <h2>How every job runs</h2>
+  <ol class="steps"><li><strong>Site survey.</strong> We inspect, measure and test on site before pricing anything.</li>
+  <li><strong>Quotation.</strong> Itemised scope, named system, method and programme. VAT shown separately.</li>
+  <li><strong>Execution.</strong> Our own crews, Monday to Saturday, phased around your operations.</li>
+  <li><strong>Handover.</strong> Joint inspection, snag closure and handover documents, with the warranty terms set out in the quotation.</li></ol></div>
+  <aside class="box"><h3>Where we work</h3><p>Dubai, Sharjah and Abu Dhabi industrial areas, close to our Business Bay office and Al Sajaa workshop.</p><ul><li><a href="/areas/dubai/">Dubai</a></li><li><a href="/areas/sharjah/">Sharjah</a></li></ul>
+  <h3>See the work</h3><ul><li><a href="/projects/">Projects we have delivered</a></li><li><a href="/guides/warehouse-epoxy-flooring/">Guide: epoxy flooring for warehouses</a></li></ul></aside>
+</div></section>'''
     schema = {"@context": "https://schema.org", "@graph": [breadcrumb_schema(crumbs),
         {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f'{SITE}/services/{s["slug"]}/', "name": s["name"]} for i, s in enumerate(SERVICES)]}]}
     return path, page(path, "Our Services: Eight Technical Trades in the UAE | Z-Link",
@@ -320,8 +332,72 @@ def build_hub():
                       "Eight technical trades. One contract.", crumbs, body, schema)
 
 
+PROJECT_DETAIL = {
+    "dwc": ("epoxy-flooring", ["Surface preparation of the parking bay slab", "Epoxy coating with aggregate broadcast for an anti-slip finish", "Work delivered as specialist subcontractor on an airport site"]),
+    "enpi": ("epoxy-flooring", ["Industrial epoxy floor across a 1,250 m² warehouse", "Glossy finish suited to a manufacturing warehouse", "Completed in 2025"]),
+    "cupco": ("epoxy-flooring", ["Diamond grinding of the existing floor", "Epoxy coating applied inside a working factory", "Yellow safety line marking"]),
+    "steel": ("industrial-coatings", ["Blast cleaning of each batch at our Al Sajaa workshop", "Jotun Penguard primers and Hardtop topcoats up to a C5-M specification", "Dry-film thickness checked and a coating certificate issued for every batch"]),
+}
+
+
+def build_projects():
+    path = '/projects/'
+    crumbs = [("Home", "/"), ("Projects", None)]
+    blocks = ''
+    for k, (svc, pts) in PROJECT_DETAIL.items():
+        cat, head, desc, img, alt = PROJECTS[k]
+        base = img.rsplit('-', 1)[0]
+        imgs = ''.join(f'<img src="{base}-{n}.webp" alt="{e(alt)}{", work in progress" if n == 2 else (", detail" if n == 3 else "")}" loading="lazy" width="800" height="600">' for n in (1, 2, 3))
+        sname = next(x["name"] for x in SERVICES if x["slug"] == svc)
+        lis = ''.join(f'<li>{e(x)}</li>' for x in pts)
+        blocks += f'''<article class="case"><div class="case-imgs">{imgs}</div>
+<span class="kicker">{e(cat)}</span><h2>{e(head)}</h2><p>{e(desc)}</p>
+<h3>What we did</h3><ul class="ticks">{lis}</ul>
+<p>Service: <a href="/services/{svc}/">{e(sname)}</a></p></article>'''
+    body = f'''<section class="hero"><div class="wrap narrow"><span class="kicker">Recent projects</span>
+<h1>Projects we have delivered in Dubai and Sharjah</h1>
+<p class="lead">Our own site photos from completed work. Clients are described by type, and references are available on request with their permission.</p></div></section>
+<section class="block"><div class="wrap">{blocks}</div></section>
+<section class="block alt"><div class="wrap narrow"><h2>Sectors we serve</h2><p>We work for facilities managers, property owners, factories and main contractors across the Emirates: industrial and warehouse buildings, commercial towers and car parks, residential communities, logistics and distribution centres, and planned and reactive facilities management works.</p></div></section>'''
+    schema = {"@context": "https://schema.org", "@graph": [breadcrumb_schema(crumbs)]}
+    return path, page(path, "Projects: Epoxy Flooring & Industrial Coatings UAE | Z-Link",
+                      "Completed Z-Link projects: anti-slip epoxy at Dubai South (DWC), factory and warehouse epoxy floors in Sharjah, and C5-M steel coatings at our Al Sajaa workshop.",
+                      "Projects we have delivered in Dubai and Sharjah", crumbs, body, schema)
+
+
+GUIDE = [
+ ("Start with the slab", "An epoxy floor is only as good as the concrete under it. New concrete needs to cure before it is coated, typically around 28 days unless the system specification says otherwise. Moisture rising through the slab is the most common cause of blistering and peeling, so the slab should be checked for moisture before any coating is chosen. Cracks, damaged joints and loose areas are repaired first."),
+ ("Preparation decides the result", "The surface is mechanically prepared, usually by diamond grinding or shot blasting, to remove the weak top layer (laitance), old coatings and contamination and to give the primer something to grip. A floor that is only cleaned and painted will not last under warehouse traffic, whatever product is used."),
+ ("Match the system to the traffic", "Thin roller-applied coatings suit light foot traffic and dust-proofing. Self-levelling and thicker build systems suit forklifts, pallet trucks and heavy wear, and give a smoother, flatter finish. Ramps, loading areas and wet zones need an anti-slip finish, usually made by broadcasting aggregate into the coating. Hard-wheeled forklift traffic calls for a thicker build than foot traffic."),
+ ("Outdoors and in sunlight", "Standard epoxy changes colour (yellows) and loses gloss under direct sunlight. For open car parks, entrances and outdoor areas, a UV-stable topcoat such as polyurethane is normally specified over the epoxy, or a system designed for outdoor exposure is used."),
+ ("UAE heat and application", "Temperature and humidity change how long the material stays workable and how fast it cures. In summer, work is often planned for cooler hours, and the manufacturer's limits for substrate and air temperature are followed. Cure times before foot traffic and vehicle traffic come from the product data sheet, so ask your contractor for both before you plan the shutdown."),
+ ("Finishing details", "Coving (a curved joint between floor and wall) makes food and clean areas easier to wash. Line marking for walkways, bays and forklift routes is usually done in the same programme. Expansion joints are kept and sealed, not coated over."),
+ ("Working in a live warehouse", "Most warehouses cannot close. The floor can be done in phases, area by area, with barricades and signage, and with night or weekend shifts where needed. Agree the phase plan before work starts so stock and racking moves are ready."),
+ ("What to ask a contractor", "Ask for a site survey before the price, an itemised quotation naming the system and its thickness, the preparation method, the phasing plan and cure times, and the warranty terms in writing. A price without a named system and preparation method cannot be compared fairly with another."),
+]
+
+
+def build_guide():
+    path = '/guides/warehouse-epoxy-flooring/'
+    crumbs = [("Home", "/"), ("Guides", None), ("Warehouse epoxy flooring", None)]
+    secs = ''.join(f'<h2>{e(h)}</h2><p>{e(p)}</p>' for h, p in GUIDE)
+    body = f'''<section class="hero"><div class="wrap narrow"><span class="kicker">Guide</span>
+<h1>Epoxy flooring for warehouses in the UAE: what to check before you choose</h1>
+<p class="lead">A plain-English guide for facility managers and warehouse owners in Dubai, Sharjah and Abu Dhabi, from the team that lays these floors.</p></div></section>
+<section class="block"><div class="wrap two-text"><div class="prose">{secs}</div>
+<aside class="box"><h3>Related</h3><ul><li><a href="/services/epoxy-flooring/">Epoxy flooring service</a></li><li><a href="/projects/">Projects we have delivered</a></li><li><a href="/services/industrial-coatings/">Industrial coatings</a></li></ul>
+<h3>Need a survey?</h3><p>We inspect, measure and test on site, then send an itemised quotation naming the system, method and programme.</p></aside></div></section>'''
+    schema = {"@context": "https://schema.org", "@graph": [breadcrumb_schema(crumbs),
+        {"@type": "Article", "headline": "Epoxy flooring for warehouses in the UAE: what to check before you choose",
+         "author": {"@id": ORG_ID}, "publisher": {"@id": ORG_ID}, "datePublished": "2026-11-07", "dateModified": "2026-11-07",
+         "mainEntityOfPage": SITE + path}]}
+    return path, page(path, "Warehouse Epoxy Flooring Guide for the UAE | Z-Link",
+                      "What to check before choosing an epoxy floor for a UAE warehouse: slab moisture, preparation, systems for forklift traffic, sunlight, heat, phasing and quotes.",
+                      "Epoxy flooring for warehouses in the UAE: what to check before you choose", crumbs, body, schema)
+
+
 def main():
-    out = [build_hub()] + [build_service(s) for s in SERVICES] + [build_area(a) for a in AREAS]
+    out = [build_hub()] + [build_service(s) for s in SERVICES] + [build_area(a) for a in AREAS] + [build_projects(), build_guide()]
     for path, doc in out:
         d = '.' + path
         os.makedirs(d, exist_ok=True)

@@ -82,3 +82,4 @@ footer .bar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:
 @media (max-width:900px){.two,.two-text{grid-template-columns:1fr}footer .wrap.top{grid-template-columns:1fr 1fr}.logo span{display:none}}
 @media (max-width:520px){footer .wrap.top{grid-template-columns:1fr}.hd .btn{padding:10px 14px;font-size:.85rem}}
 .steps{padding-left:22px}.steps li{margin-bottom:10px}
+.case{padding-block:28px;border-bottom:1px solid var(--line)}.case:last-child{border:0}.case h2{margin-top:10px}.case-imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.case-imgs img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius)}@media(max-width:600px){.case-imgs{grid-template-columns:1fr 1fr}.case-imgs img:last-child{display:none}}
