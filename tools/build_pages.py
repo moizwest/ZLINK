@@ -136,9 +136,15 @@ SERVICES = [
    ("Soft landscaping", "Palms, planting and lawns for villas, residential communities and campuses."),
    ("Hard landscaping", "Interlock paving, edging, granite and other hardscape, sports grounds and water features, built and finished to sit well with the buildings around them."),
    ("Maintenance-friendly design", "We choose planting, paving patterns and edging that suit UAE heat and are practical for the community or facility team to maintain after handover."),
+   ("Who we landscape for", "Villa owners, residential communities, campuses, and the facilities managers and property owners who look after them. Typical scopes are new planting and lawns around a villa or community, replacement of tired or broken interlock paving, new walkways and edging, and sports grounds and water features for shared spaces."),
+   ("Paving and the work around it", "Interlock paving is only as good as what sits around it. Kerbs, edging and drainage are as important as the blocks, and broken paving is often a sign of a drainage or levels problem underneath. Because civil works are one of our own trades, the same programme can cover drainage, blockwork and concrete repair alongside the paving, so the hardscape is built and finished as one job."),
+   ("Working in occupied communities", "Most landscaping happens where people live, study or work. We plan access, working hours and protection around residents and users, keep walkways safe with barricades and signage, and leave areas clean at the end of each shift."),
+   ("Part of a greener Dubai", "Dubai's 2040 Urban Master Plan aims to double the emirate's green and recreational space. Every planted courtyard, shaded walkway and sports ground in a community is a small part of that goal, and we build them to last in UAE conditions."),
   ],
-  items=["Palms and lawns", "Interlock paving", "Sports grounds", "Water features", "Hardscape"],
-  projects=[], related=["civil-works", "painting", "fit-out"], faq=[("Do you build sports grounds?", "Yes. Sports grounds are part of our hard landscaping scope, along with interlock paving, edging and water features.")]),
+  items=["Palms and lawns", "Interlock paving", "Kerbs and edging", "Sports grounds", "Water features", "Hardscape"],
+  projects=[], related=["civil-works", "painting", "fit-out"], faq=[("Do you build sports grounds?", "Yes. Sports grounds are part of our hard landscaping scope, along with interlock paving, edging and water features."),
+   ("Can you repair broken interlock paving?", "Yes. We survey the area first to find why the paving has moved or broken, such as drainage or levels, then relay or replace the paving and fix the cause so it does not fail again."),
+   ("Do you work in residential communities while residents are at home?", "Yes. We phase the work, keep walkways safe with barricades and signage, and agree working hours with the community or facilities team.")]),
  dict(slug="fit-out", name="Turnkey Fit-out",
   title="Turnkey Fit-out & Renovation Contractor in Dubai | Z-Link",
   desc="Turnkey fit-out and renovation in Dubai: offices, washrooms, warehouses and post-fire reinstatement, coordinated by one contractor and handed over ready to use.",
@@ -173,6 +179,9 @@ AREAS = [
 ]
 
 CSS = "/assets/css/pages.css"
+
+# Per-page sitemap lastmod (default 2026-11-07). Update when a page's content changes.
+LASTMOD = {"/services/landscaping/": "2026-11-09"}
 
 
 def e(s):
@@ -406,7 +415,7 @@ def main():
     urls = ['/'] + [p for p, _ in out]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:
-        sm.append(f'  <url><loc>{SITE}{u}</loc><lastmod>2026-11-07</lastmod></url>')
+        sm.append(f'  <url><loc>{SITE}{u}</loc><lastmod>{LASTMOD.get(u, "2026-11-07")}</lastmod></url>')
     sm.append('</urlset>')
     open('sitemap.xml', 'w').write('\n'.join(sm) + '\n')
     print('built', len(out), 'pages;', 'sitemap', len(urls), 'urls')
