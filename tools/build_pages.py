@@ -181,7 +181,7 @@ AREAS = [
 CSS = "/assets/css/pages.css"
 
 # Per-page sitemap lastmod (default 2026-11-07). Update when a page's content changes.
-LASTMOD = {"/services/landscaping/": "2026-11-09"}
+LASTMOD = {"/services/landscaping/": "2026-11-09", "/projects/": "2026-11-16"}
 
 
 def e(s):
@@ -349,6 +349,18 @@ PROJECT_DETAIL = {
 }
 
 
+PROJECT_FAQ = [
+    ("Can we speak to a client about past work?",
+     "References are available on request, with the client's permission."),
+    ("Are these photos of your own work?",
+     "Yes. The project photos on this page are our own site photos from completed jobs. Stock images elsewhere on the site are credited to Unsplash."),
+    ("Can you lay an epoxy floor while our factory keeps running?",
+     "Yes. Our Industrial Area 15 job was done inside a working factory. We phase areas so operations continue, with barricades and signage, and can plan night or weekend shifts."),
+    ("Do you issue coating records?",
+     "Yes. On our steel bracket work, dry-film thickness was checked and a coating certificate was issued for every batch."),
+] + COMMON_FAQ[2:]
+
+
 def build_projects():
     path = '/projects/'
     crumbs = [("Home", "/"), ("Projects", None)]
@@ -367,7 +379,24 @@ def build_projects():
 <h1>Projects we have delivered in Dubai and Sharjah</h1>
 <p class="lead">Our own site photos from completed work. Clients are described by type, and references are available on request with their permission.</p></div></section>
 <section class="block"><div class="wrap">{blocks}</div></section>
-<section class="block alt"><div class="wrap narrow"><h2>Sectors we serve</h2><p>We work for facilities managers, property owners, factories and main contractors across the Emirates: industrial and warehouse buildings, commercial towers and car parks, residential communities, logistics and distribution centres, and planned and reactive facilities management works.</p></div></section>'''
+<section class="block alt"><div class="wrap two-text"><div class="prose">
+  <h2>What these projects have in common</h2>
+  <p>Each job was surveyed on site before it was priced, and each was carried out by our own crews rather than subcontracted. The floors cover very different settings: an airport parking bay delivered as specialist subcontractor, a manufacturer's warehouse, and a factory that kept working while we ground, coated and line-marked its floor. The steel bracket package ran batch by batch through our Al Sajaa workshop with a coating certificate issued for every batch.</p>
+  <h2>How we deliver a project like these</h2>
+  <ol class="steps"><li><strong>Site survey.</strong> We inspect, measure and test on site before pricing anything.</li>
+  <li><strong>Quotation.</strong> Itemised scope, named system, method and programme. VAT shown separately.</li>
+  <li><strong>Execution.</strong> Our own crews, Monday to Saturday, phased around your operations, with full PPE, a daily toolbox talk, and a risk assessment and method statement for every scope.</li>
+  <li><strong>Handover.</strong> Joint inspection, snag closure and handover documents, with the warranty terms set out in the quotation.</li></ol>
+  <h2>Systems used on our floors and coatings</h2>
+  <p>We apply Sika, Fosroc and Jotun systems to the manufacturer's specification. Our application team completed Sika U.A.E.'s Basic Application Training for Sikafloor® MultiFlex Traffic 1330 and Sikafloor®-1205 on 31 December 2025. This is basic application training; Z-Link is not a Sika approved applicator. On the steel bracket project we used Jotun Penguard primers and Hardtop topcoats, with dry-film thickness checked on every batch.</p>
+  <h2>Sectors we serve</h2>
+  <p>We work for facilities managers, property owners, factories and main contractors across the Emirates: industrial and warehouse buildings, commercial towers and car parks, residential communities, logistics and distribution centres, and planned and reactive facilities management works.</p>
+  </div>
+  <aside class="box"><h3>Where these projects are</h3><ul><li><a href="/areas/dubai/">Dubai</a>: Dubai South</li><li><a href="/areas/sharjah/">Sharjah</a>: Industrial Areas 5 and 15, Al Sajaa</li></ul>
+  <h3>Services shown</h3><ul><li><a href="/services/epoxy-flooring/">Epoxy flooring</a></li><li><a href="/services/industrial-coatings/">Industrial coatings</a></li></ul>
+  <h3>Planning a warehouse floor?</h3><p><a href="/guides/warehouse-epoxy-flooring/">Read our guide to choosing an epoxy floor for a UAE warehouse.</a></p></aside>
+</div></section>
+{faq_html(PROJECT_FAQ)}'''
     schema = {"@context": "https://schema.org", "@graph": [breadcrumb_schema(crumbs)]}
     return path, page(path, "Projects: Epoxy Flooring & Industrial Coatings UAE | Z-Link",
                       "Completed Z-Link projects: anti-slip epoxy at Dubai South (DWC), factory and warehouse epoxy floors in Sharjah, and C5-M steel coatings at our Al Sajaa workshop.",
