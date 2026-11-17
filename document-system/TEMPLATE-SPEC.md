@@ -35,7 +35,7 @@ Modelled on MW/10/1228. Applies to tax invoices and proforma invoices.
 | B3 | **Line-item table** | Columns `SR NO \| DESCRIPTION \| UNIT \| QTY \| RATE \| TOTAL AMOUNT`. **Data alignment (MD rule, 27 Oct 2026):** every data cell from the first line item down to NET TOTAL is **vertically middle**; UNIT, QTY and RATE values are **horizontally centred**; TOTAL AMOUNT values are **right-aligned**. Apply with `align_items()` in `zlink_doc.py` after `fix_grid()`. |
 | B4 | **Totals rows** | `GROSS TOTAL`, `VAT @ 5%`, `NET TOTAL`. Each label sits in the **RATE column alone, right-aligned**, with SR NO + DESCRIPTION + UNIT + QTY merged into one blank cell, and the figure in TOTAL AMOUNT. Never spread across several columns or the full row width. The RATE column is **at least 30 mm** so "GROSS TOTAL" sits on one line. |
 | B5 | **Total in Words** | `Total in Words:  U.A.E. DIRHAMS <amount> ONLY`. Add `AND FILS nn/100` before `ONLY` when there are fils. **Placement (MD rule, 28 Oct 2026, measured on MW/10/1228): the LAST ROW of the line-item table, merged across all six columns, bold, directly beneath NET TOTAL** — never a free paragraph below the table. Use `words_row()` in `zlink_doc.py`. |
-| B6 | **Payment Terms** | One line, **bold and underlined**. |
+| B6 | **Payment Terms** | One line, **bold and underlined**, wording fixed by the MD (17 Nov 2026): `Payment Terms: 100% due upon receipt of the invoice.` Use `payment_terms()` in `zlink_doc.py`; never retype it. Quotations keep their own payment terms (section Q). |
 | B7 | **Bank block** | Table headed `RAK BANK` in **red** followed by `DETAILS` in black. Rows: ACCOUNT NAME / ACCOUNT NUMBER / IBAN / SWIFT CODE / BRANCH. Roughly 120 mm wide, left aligned — not full width. |
 | B8 | **Signatory** | `AUTHORIZED SIGNATORY`, then **25 mm of clear space** (four empty 10 pt lines — MD rule 28 Oct 2026, superseding the earlier ~33 mm which the MD found too wide) for the company stamp and signature, then `FOR: Z-LINK TECHNICAL SERVICES CONTRACTING CO LLC`. The MD applies stamp and signature after formatting. Use `signatory_block()` in `zlink_doc.py`. |
 
@@ -198,4 +198,6 @@ section A is an equally mandatory, separate standard.
 - [ ] D reference number in the correct series, next in sequence
 - [ ] Arithmetic re-computed independently; 5% VAT shown separately
 - [ ] Duplicate-data check: no fact stated twice without contractual need
+- [ ] Repeated-phrase check (MD rule 17 Nov 2026): no phrase or sentence repeated anywhere in the document or its covering email — e.g. a SUBJECT that restates the line-item description, or an email restating figures already in the attachment. Only party legal names in signature blocks and reference numbers in the particulars may repeat.
+- [ ] B6 Payment Terms reads exactly "Payment Terms: 100% due upon receipt of the invoice."
 - [ ] No wording signalling reduced quality
