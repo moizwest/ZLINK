@@ -343,6 +343,20 @@ def advance_rows(table, advance_figure, balance_figure, advance_date):
     wide('BALANCE PAYABLE', balance_figure, highlight=True)
 
 
+PAYMENT_TERMS = 'Payment Terms: 100% due upon receipt of the invoice.'
+
+
+def payment_terms(doc):
+    """Clause B6 - Payment Terms line on every tax invoice and proforma invoice.
+
+    MD RULE 17 Nov 2026, permanent: the wording is fixed as
+    "Payment Terms: 100% due upon receipt of the invoice." - bold and
+    underlined, one line. Never retype or vary it per document.
+    """
+    para(doc, '', after=6)
+    return para(doc, PAYMENT_TERMS, 10, True, underline=True, after=8)
+
+
 def section_heading(doc, text):
     """Clause A6 — navy bold heading with a thin navy rule beneath (no fill).
     Used for the numbered sections of reports and work completion reports."""
