@@ -156,9 +156,17 @@ SERVICES = [
    ("One contract", "Gypsum, joinery, finishes, flooring, painting and civil works are our own trades; MEP is coordinated within the same programme. You deal with one programme, one standard and one contact."),
    ("Approvals", "We are registered with Concordia for fit-out approvals in JLT and DMCC, and we prepare the drawings and documents a fit-out approval needs."),
    ("Post-fire reinstatement", "After a fire we strip out damaged finishes, repair and clean the structure, and rebuild ceilings, partitions, finishes and services coordination so the space can reopen."),
+   ("Office fit-out and refurbishment", "New partitions and gypsum ceilings, joinery, wall finishes, painting and flooring, laid out around how your team works. Refurbishments can be phased floor by floor or zone by zone, so part of the office stays in use while the rest is rebuilt."),
+   ("Washroom renovation", "Washrooms are a small space with many trades: strip-out, drainage, waterproofing under the new finishes, tiling and wall finishes, then fixtures. Because civil works and waterproofing are our own trades, the hidden layers are done by the same team that finishes the room, which is where most washroom leaks are prevented."),
+   ("Warehouse fit-out", "Offices and partitions inside the warehouse, finishes, painting and an epoxy floor laid by our own flooring crews, with line marking for walkways and forklift routes in the same programme."),
+   ("How the trades are sequenced", "A fit-out runs in a set order: strip-out and civil works first, then partitions, ceilings and services coordination, then joinery and finishes, painting and flooring last. Running every step in one programme means each trade starts when the previous one finishes, without waiting on another contractor."),
+   ("Who looks after your fit-out", "The same Z-Link team covers management (commercial, estimating and project control), engineering (site survey, system selection and method statements), safety and QC (inspections, permits and quality checks) and the site crews of fitters, masons and painters. Where a project needs a specialist outside our eight trades, we tell you at quotation stage."),
   ],
-  items=["Offices", "Washrooms", "Warehouses", "Post-fire reinstatement"],
-  projects=[], related=["civil-works", "painting", "epoxy-flooring"], faq=[("Can you handle the fit-out approval?", "Yes. We are registered with Concordia for fit-out approvals in JLT and DMCC and prepare the approval documents with the fit-out.")]),
+  items=["Offices", "Washrooms", "Warehouses", "Post-fire reinstatement", "Gypsum and partitions", "Joinery and finishes", "Painting and flooring", "JLT and DMCC approvals"],
+  projects=[], related=["civil-works", "painting", "epoxy-flooring"], faq=[("Can you handle the fit-out approval?", "Yes. We are registered with Concordia for fit-out approvals in JLT and DMCC and prepare the approval documents with the fit-out."),
+   ("Can you refurbish our office while we keep working?", "Yes. We phase the work zone by zone or floor by floor, keep working areas separated and safe with barricades and signage, and can plan noisy work for evenings or weekends."),
+   ("Do you subcontract the fit-out?", "Gypsum, joinery, finishes, flooring, painting and civil works are carried out by our own crews, and MEP is coordinated within the same programme. Any specialist outside our trades is named at quotation stage."),
+   ("Can you reinstate a space after a fire?", "Yes. We strip out the damaged finishes, repair and clean the structure, and rebuild ceilings, partitions and finishes so the space can reopen.")]),
 ]
 
 AREAS = [
@@ -181,7 +189,7 @@ AREAS = [
 CSS = "/assets/css/pages.css"
 
 # Per-page sitemap lastmod (default 2026-11-07). Update when a page's content changes.
-LASTMOD = {"/services/landscaping/": "2026-11-09", "/projects/": "2026-11-16"}
+LASTMOD = {"/services/landscaping/": "2026-11-09", "/projects/": "2026-11-16", "/services/fit-out/": "2026-11-23"}
 
 
 def e(s):
