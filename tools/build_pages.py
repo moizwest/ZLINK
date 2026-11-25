@@ -229,7 +229,7 @@ def page(path, title, desc, h1, crumbs, body_html, schema):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap hd">
-  <a class="logo" href="/" aria-label="Z-Link home"><img src="/assets/images/logo.png" alt="Z-Link logo" width="63" height="58"><span>TECHNICAL SERVICES<br>CONTRACTING CO. LLC</span></a>
+  <a class="logo" href="/" aria-label="Z-Link home"><img src="/assets/images/logo.webp" alt="Z-Link logo" width="63" height="58"><span>TECHNICAL SERVICES<br>CONTRACTING CO. LLC</span></a>
   <a class="btn" href="/#contact">Request a quote</a>
 </div></header>
 <nav class="svcnav" aria-label="Services"><div class="wrap">{nav}</div></nav>
@@ -244,7 +244,7 @@ def page(path, title, desc, h1, crumbs, body_html, schema):
 </main>
 <footer>
   <div class="wrap top">
-    <div><img class="fl" src="/assets/images/logo.png" alt="Z-Link" loading="lazy"><p>Z-Link Technical Services Contracting Co. LLC. Eight technical trades, our own crews, one contract, across the UAE.</p></div>
+    <div><img class="fl" src="/assets/images/logo.webp" alt="Z-Link" loading="lazy"><p>Z-Link Technical Services Contracting Co. LLC. Eight technical trades, our own crews, one contract, across the UAE.</p></div>
     <div><h4>Services</h4><ul>{svc_foot}</ul></div>
     <div><h4>Areas</h4><ul><li><a href="/areas/dubai/">Dubai</a></li><li><a href="/areas/sharjah/">Sharjah</a></li><li><a href="/#areas">All areas</a></li><li><a href="/projects/">Projects</a></li><li><a href="/guides/warehouse-epoxy-flooring/">Epoxy flooring guide</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="tel:{PHONE_M}">{PHONE_M_TXT}</a></li><li><a href="tel:{PHONE_L}">{PHONE_L_TXT}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li>{e(ADDRESS)}</li></ul></div>
@@ -268,6 +268,11 @@ def project_cards(keys):
     cards = ''.join(f'''<article class="proj"><img src="{PROJECTS[k][3]}" alt="{e(PROJECTS[k][4])}" loading="lazy" width="800" height="600">
 <div><span class="kicker">{e(PROJECTS[k][0])}</span><h3>{e(PROJECTS[k][1])}</h3><p>{e(PROJECTS[k][2])}</p></div></article>''' for k in keys)
     return f'<section class="block alt"><div class="wrap"><h2>Work we have delivered</h2><div class="projs">{cards}</div><p class="note">Our own site photos. References are available on request with the client\'s permission.</p></div></section>'
+
+
+def faq_schema(faqs, path):
+    return {"@type": "FAQPage", "@id": SITE + path + "#faq", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}
 
 
 def faq_html(faqs):
@@ -304,7 +309,7 @@ def build_service(s):
         {"@type": "Service", "@id": SITE + path + "#service", "name": s["name"], "serviceType": s["name"],
          "description": s["desc"], "url": SITE + path, "provider": {"@id": ORG_ID},
          "areaServed": [{"@type": "City", "name": "Dubai"}, {"@type": "City", "name": "Sharjah"}, {"@type": "City", "name": "Abu Dhabi"}]},
-        breadcrumb_schema(crumbs)]}
+        breadcrumb_schema(crumbs), faq_schema(s["faq"] + COMMON_FAQ, path)]}
     return path, page(path, s["title"], s["desc"], s["h1"], crumbs, body, schema)
 
 
@@ -318,7 +323,7 @@ def build_area(a):
 <section class="block"><div class="wrap"><h2>Our services in {e(a["name"])}</h2><div class="svc-grid">{cards}</div></div></section>
 {project_cards(a["projects"])}
 {faq_html(COMMON_FAQ)}'''
-    schema = {"@context": "https://schema.org", "@graph": [breadcrumb_schema(crumbs)]}
+    schema = {"@context": "https://schema.org", "@graph": [breadcrumb_schema(crumbs), faq_schema(COMMON_FAQ, path)]}
     return path, page(path, a["title"], a["desc"], a["h1"], crumbs, body, schema)
 
 
